@@ -22,7 +22,7 @@ project is one of the first projects to appear on the [BIG IoT marketplace](http
 |geotools|GNU Lesser Public License Version 2.1|[http://docs.geotools.org/latest/userguide/welcome/license.html](http://docs.geotools.org/latest/userguide/welcome/license.html)|
 |squreup retrofit|Apache License Version 2.0|[https://github.com/square/retrofit/blob/master/LICENSE.txt](https://github.com/square/retrofit/blob/master/LICENSE.txt)|
 
-#### ec4BIT - WFS Adapter
+#### wfs4BIGIoT-Adapter
 
 |Library|License|Link/Source|
 |:----:|:----:|:-----:|
@@ -75,9 +75,9 @@ You must specify the following specifications for your WFS and your desired BIG 
 | **`inCity`**|NO| The inCity specifies a name of a city, to which the data of your offering refer to. It will be added to the offeringDescription with `.inCity(INCITY)`|[**inCity:** Barcelona](https://github.com/enviroCar/wfs4BIT-Adapter/blob/develop/src/main/resources/application.yml#L24)|
 | **`expireDate`**|NO| The expireDate specifies the DateTime until which your offering is marked as activated on the marketplace. Once, the exireDate is reached, the offering will become marked is not activated. The DateTime must be specified in `yyyy-MM-ddThh:mm:ss` (ISO8601 format).|[**expireDate**: 2018-02-30T01:23:45](https://github.com/enviroCar/wfs4BIT-Adapter/blob/develop/src/main/resources/application.yml#L25)|
 | **`accessStreamTimeout`**|NO| The accessStreamTimeout specifies **TODO: finish this sentence**. The DateTime must be specified in `yyyy-MM-ddThh:mm:ss` (ISO8601 format).|[**accessStreamTimeout**: 2018-02-30T01:23:45](https://github.com/enviroCar/wfs4BIT-Adapter/blob/develop/src/main/resources/application.yml#L26)|
-|**`LicenseType`**|NO| The licenseType specifies the license of your offering's data. Possible options are `OPEN_DATA_LICENSE`,`CREATIVE_COMMONS`,`NON_COMMERCIAL_DATA_LICENSE`.| [**licenseType**: OPEN_DATA_LICENSE](https://github.com/enviroCar/wfs4BIT-Adapter/blob/develop/src/main/resources/application.yml#L27) |
+|**`licenseType`**|NO| The licenseType specifies the license of your offering's data. Possible options are `OPEN_DATA_LICENSE`,`CREATIVE_COMMONS`,`NON_COMMERCIAL_DATA_LICENSE`.| [**licenseType**: OPEN_DATA_LICENSE](https://github.com/enviroCar/wfs4BIT-Adapter/blob/develop/src/main/resources/application.yml#L27) |
 |**`price`**|NO| The price must specify `pricingModel`, `price`, and `currency`. The pricingModel can be one of {FREE, PER_ACCESS, PER_BYTE, PER_MESSAGE, PER_MONTH }. The price must be a double value. The currency can be one of {Euros, USDollars}. | See [Example on Github](https://github.com/enviroCar/wfs4BIT-Adapter/blob/develop/src/main/resources/application.yml#L28-L33)|
-| **`geometry`**|NO| If your WFS data contains features with default geometries, then you should specify the geometry property name and choose a schema. The geometry parameter is not required, but highly recommended, so that marketplace users can define and apply a custom spatial filter to your offering. | see example [on GitHub](https://github.com/enviroCar/wfs4BIT-Adapter/blob/develop/src/main/resources/application.yml#L34-L36) |
+| **`geometry`**|NO| If your WFS data contains features with default geometries, then you should specify the geometry property name and choose a schema. The geometry parameter is not required, but highly recommended, so that marketplace users can define and apply a custom spatial filter to your offering (see more at [section WFS Filter](#WFSFilter-Filter)). | see example [on GitHub](https://github.com/enviroCar/wfs4BIT-Adapter/blob/develop/src/main/resources/application.yml#L34-L36) |
 | **`outputData`**|NO| You must specify the properties delivered by your WFS, that you want to add as OfferingOutputData to the BIG IoT marketplace offering. For each property, you must specify NAME and SCHEMA of the property. | see example [on GitHub](https://github.com/enviroCar/wfs4BIT-Adapter/blob/develop/src/main/resources/application.yml#L37-L147) |
 
 ## How to deploy
@@ -94,7 +94,7 @@ You must specify the following specifications for your WFS and your desired BIG 
 * #### bbox
 	**_TODO_**
 
-* #### Filter
+* #### Filter (#WFSFilter-Filter)
 	**_TODO_**
 
 ## Bugs and Feedback
