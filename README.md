@@ -77,25 +77,53 @@ You must specify the following specifications for your WFS and your desired BIG 
 | **`accessStreamTimeout`**|NO| The accessStreamTimeout specifies **TODO: finish this sentence**. The DateTime must be specified in `yyyy-MM-ddThh:mm:ss` (ISO8601 format).|[**accessStreamTimeout**: 2018-02-30T01:23:45](https://github.com/enviroCar/wfs4BIT-Adapter/blob/develop/src/main/resources/application.yml#L26)|
 |**`licenseType`**|NO| The licenseType specifies the license of your offering's data. Possible options are `OPEN_DATA_LICENSE`,`CREATIVE_COMMONS`,`NON_COMMERCIAL_DATA_LICENSE`.| [**licenseType**: OPEN_DATA_LICENSE](https://github.com/enviroCar/wfs4BIT-Adapter/blob/develop/src/main/resources/application.yml#L27) |
 |**`price`**|NO| The price must specify `pricingModel`, `price`, and `currency`. The pricingModel can be one of {FREE, PER_ACCESS, PER_BYTE, PER_MESSAGE, PER_MONTH }. The price must be a double value. The currency can be one of {Euros, USDollars}. | See [Example on Github](https://github.com/enviroCar/wfs4BIT-Adapter/blob/develop/src/main/resources/application.yml#L28-L33)|
-| **`geometry`**|NO| If your WFS data contains features with default geometries, then you should specify the geometry property name and choose a schema. The geometry parameter is not required, but highly recommended, so that marketplace users can define and apply a custom spatial filter to your offering (see more at [section WFS Filter](#WFSFilter-Filter)). | see example [on GitHub](https://github.com/enviroCar/wfs4BIT-Adapter/blob/develop/src/main/resources/application.yml#L34-L36) |
+| **`geometry`**|NO| If your WFS data contains features with default geometries, then you should specify the geometry property name and choose a schema. The geometry parameter is not required, but highly recommended, so that marketplace users can define and apply a custom spatial filter to your offering. | see example [on GitHub](https://github.com/enviroCar/wfs4BIT-Adapter/blob/develop/src/main/resources/application.yml#L34-L36) |
 | **`outputData`**|NO| You must specify the properties delivered by your WFS, that you want to add as OfferingOutputData to the BIG IoT marketplace offering. For each property, you must specify NAME and SCHEMA of the property. | see example [on GitHub](https://github.com/enviroCar/wfs4BIT-Adapter/blob/develop/src/main/resources/application.yml#L37-L147) |
 
 ## How to deploy
 **_TODO_**
 
-## WFS filter support
+## InputData - WFS GetFeature request parameters
+GetFeature requests can return potentially a large amount of data. This **wfs4BIGIoT-Adapter** implements all GetFeature request parameters to limit the returned data to those features of interest. The GetFeature request parameters are added as InputData to your offering. The execution of multiple InputData Filters is possible - though not always reasonable. The following filters are available:
 
 * #### maxFeatures
-	**_TODO_**
+	Limit the accessed features when consuming the offering by adding `.addNameValue("maxFeature","N")` to the AccessParameters - where `N` specifies the maximum amount of returned features. You can also add maxFeatures as an URL parameter to your offering with `https://adress:port/bigiot/access/route?maxFeatures=N`.
+
+* #### featureID
+	Obtain only one specific feature when consuming the offering by adding `.addNameValue("featureID","ID")`to the AccessParameters - where `ID` specifies the feature ID of the specific feature. You can also add maxFeatures as an URL parameter to your offering with `https://adress:port/bigiot/access/route?featureID=ID`.
+
+* #### propertyName
+	Obtain the features and only the features, that contain specific attributes. You can specify a single attribute, or multiple attributes separated by commas. Apply the propertyName filter when consuming the offering by adding `.addNameValue("propertyName", "ATTRIBUTE1,ATTRIBUTE2,...,ATTRIBUTEN")` - where `ATTRIBUTE1,ATTRIBUTE2,...,ATTRIBUTEN` is a comma-separated list of feature attributes/OutputDataNames. You can also add maxFeatures as an URL parameter to your offering with `https://adress:port/bigiot/access/route?propertyName=ATTRIBUTE1,ATTRIBUTE2,...,ATTRIBUTEN`.
 
 * #### sortBy
-	**_TODO_**
+	You can sort the obtaining features by attribute descending or ascending. Apply the sortBy filter when consuming the offering by adding `.addNameValue("sortBy", "ATTRIBUTE")` - where `ATTRIBUTE` is the feature attribute/OutputDataName and the returned features will be sorted by that attribute in descending (by default) order. You can also specify `ATTRIBUTE+D` to define descending order or `ATTRIBUTE+A` to define ascending order. You can also add sortBy as an URL parameter to your offering with `?sortBy=ATTRIBUT+A`. Make sure to URL-encode the `+` with `%2B` in your URL, i.e. `https://adress:port/bigiot/access/route?sortBy=ATTRIBUTE%2BA`.
 
 * #### bbox
-	**_TODO_**
+	Obtain only feature within a spatial bounding box when consuming the offering by adding `.addNameValue("bbox","MIN_X,MIN_Y,MAX_X,MAX_Y")` to the AccessParameters - where `MIN_X,MIN_Y` is the coordinate for the lower western point and `MAX_X,MAX_Y` is the upper eastern point of the bounding box. You can also add bbox as an URL parameter to your offering with `https://adress:port/bigiot/access/route?bbox=MIN_X,MIN_Y,MAX_X,MAX_Y`.
 
-* #### Filter (#WFSFilter-Filter)
-	**_TODO_**
+* #### Filter
+	The features can be filtered customly when consuming the offering by adding `.addNameValue("Filter","FILTEREXPRESSION")` to the AccessParameters - where `FILTEREXPRESSION` is a logical compound of Spatial Capabilities (i.e. `Equals, Disjoint, Touches, Within, Overlaps, Crosses, Intersects, Contains, DWithin, BBOX`), Comparison Operators (i.e. `PropertyIsEqualTo (=), PropertyIsNotEqualTo (<>), PropertyIsLessThan (<), PropertyIsGreaterThan (>), PropertyIsLessThanOrEqualTo (<=), PropertyIsGreaterThanOrEqualTo (>=), PropertyIsLike, PropertyIsBetween (range)`) and Logical Operators (`And, Or, Not`).
+    *	Example: PropertyIsBetween can be applied on an attribute `avgSpeed` with range `[30,50]` with the expression: 
+    ```
+    <PropertyIsBetween>
+    	<PropertyName>
+        	avgSpeed
+        </PropertyName>
+    	<LowerBoundary>
+        	<Literal>
+            	30
+          	</Literal>
+        </LowerBoundary>
+        <UpperBoundary>
+            <Literal>
+                50
+            </Literal>
+        </UpperBoundary>
+ 	</PropertyIsBetween>
+    ``` 
+    *	which can be added with `.addNameValue("Filter","<PropertyIsBetween><PropertyName>avgSpeed</PropertyName><LowerBoundary><Literal>30</Literal></LowerBoundary><UpperBoundary><Literal>50</Literal></UpperBoundary></PropertyIsBetween>")`. 
+    *	You can also add Filter as an URL parameter to your offering with `https://adress:port/bigiot/access/route?Filter=<PropertyIsBetween><PropertyName>avgSpeed</PropertyName><LowerBoundary><Literal>30</Literal></LowerBoundary><UpperBoundary><Literal>50</Literal></UpperBoundary></PropertyIsBetween>`.
+    
 
 ## Bugs and Feedback
 **_TODO_**

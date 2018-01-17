@@ -68,6 +68,8 @@ public class DAO {
         String maxFeaturesFilterParam = null;
         String sortByFilterParam = null;
         String bbFilterParam = null;
+        String featureIDParam = null;
+        String propertyNameParam = null;
         String urlString = "";
         try {
             urlString = wfsConfig.getOffering().getUrl();
@@ -89,6 +91,14 @@ public class DAO {
         if (filter.hasBoundingBoxFilter()) {
             bbFilterParam = filter.getBoundingBoxFilter().string();
             urlString += "&bbox=" + bbFilterParam;
+        }
+        if (filter.hasFeatureIDFilter()) {
+            featureIDParam = filter.getFeatureIDFilter().string();
+            urlString += "&featureID=" + featureIDParam;
+        }
+        if (filter.hasPropertyNameFilter()) {
+            propertyNameParam = filter.getPropertyNameFilter().string();
+            urlString += "&propertyName=" + propertyNameParam;
         }
         try {
             URL url = new URL(urlString);

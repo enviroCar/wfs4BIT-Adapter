@@ -38,7 +38,16 @@ interface Constants {
     static final String SORT_BY_FILTER = "sortBy";
     
     // BoundingBoxFilter
-    static final String SCHEMA_BOUNDING_BOX_FILTER = "http://schema.org/box";
+    static final String SCHEMA_BOUNDING_BOX_FILTER = "SCHEMA_BOUNDING_BOX_FILTER";
     static final String BOUNDING_BOX_FILTER = "bbox";
+    
+    // FeatureIDFilter
+    static final String SCHEMA_FEATURE_ID_FILTER = "http://schema.org/identifier";
+    static final String FEATURE_ID_FILTER = "featureID";
+    
+    // FeatureIDFilter
+    static final String SCHEMA_PROPERTY_NAME_FILTER = "SCHEMA_PROPERTY_FILTER";
+    static final String PROPERTY_NAME_FILTER = "propertyName";
+    
     
 }

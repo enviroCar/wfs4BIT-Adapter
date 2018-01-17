@@ -28,6 +28,8 @@ public class WFSFilter {
     private final MaxFeaturesFilter maxFeaturesFilter;
     private final SortByFilter sortByFilter;
     private final BoundingBoxFilter bbFilter;
+    private final FeatureIDFilter featureIDFilter;
+    private final PropertyNameFilter propertyNameFilter;
 
     /**
      * Constructor.
@@ -35,16 +37,16 @@ public class WFSFilter {
      * @param customWFSFilter
      */
     public WFSFilter(CustomWFSFilter customWFSFilter) {
-        this(customWFSFilter, null, null, null);
+        this(customWFSFilter, null, null, null, null, null);
     }
-    
+
     /**
      * Constructor.
      *
      * @param maxFeaturesFilter
      */
     public WFSFilter(MaxFeaturesFilter maxFeaturesFilter) {
-        this(null, maxFeaturesFilter, null, null);
+        this(null, maxFeaturesFilter, null, null, null, null);
     }
 
     /**
@@ -53,18 +55,26 @@ public class WFSFilter {
      * @param sortByFilter
      */
     public WFSFilter(SortByFilter sortByFilter) {
-        this(null, null, sortByFilter, null);
+        this(null, null, sortByFilter, null, null, null);
     }
-    
+
     /**
      * Constructor.
      *
      * @param bbFilter
      */
     public WFSFilter(BoundingBoxFilter bbFilter) {
-        this(null, null, null, bbFilter);
+        this(null, null, null, bbFilter, null, null);
     }
 
+    /**
+     * Constructor.
+     *
+     * @param featureIDFilter
+     */
+    public WFSFilter(FeatureIDFilter featureIDFilter) {
+        this(null, null, null, null, featureIDFilter, null);
+    }
 
     /**
      * Constructor.
@@ -73,12 +83,16 @@ public class WFSFilter {
      * @param maxFeaturesFilter
      * @param sortByFilter
      * @param bbFilter
+     * @param featureIDFilter
+     * @param propertyNameFilter
      */
-    public WFSFilter(CustomWFSFilter customWFSFilter, MaxFeaturesFilter maxFeaturesFilter, SortByFilter sortByFilter, BoundingBoxFilter bbFilter) {
+    public WFSFilter(CustomWFSFilter customWFSFilter, MaxFeaturesFilter maxFeaturesFilter, SortByFilter sortByFilter, BoundingBoxFilter bbFilter, FeatureIDFilter featureIDFilter, PropertyNameFilter propertyNameFilter) {
         this.customWFSFilter = customWFSFilter;
         this.maxFeaturesFilter = maxFeaturesFilter;
         this.sortByFilter = sortByFilter;
         this.bbFilter = bbFilter;
+        this.featureIDFilter = featureIDFilter;
+        this.propertyNameFilter = propertyNameFilter;
     }
 
     public BoundingBoxFilter getBoundingBoxFilter() {
@@ -88,7 +102,7 @@ public class WFSFilter {
     public boolean hasBoundingBoxFilter() {
         return this.bbFilter != null;
     }
-    
+
     public SortByFilter getSortByFilter() {
         return this.sortByFilter;
     }
@@ -111,6 +125,22 @@ public class WFSFilter {
 
     public boolean hasMaxFeaturesFilter() {
         return this.maxFeaturesFilter != null;
+    }
+
+    public FeatureIDFilter getFeatureIDFilter() {
+        return featureIDFilter;
+    }
+
+    public boolean hasFeatureIDFilter() {
+        return this.featureIDFilter != null;
+    }
+
+    public PropertyNameFilter getPropertyNameFilter() {
+        return propertyNameFilter;
+    }
+
+    public boolean hasPropertyNameFilter() {
+        return this.propertyNameFilter != null;
     }
 
 }

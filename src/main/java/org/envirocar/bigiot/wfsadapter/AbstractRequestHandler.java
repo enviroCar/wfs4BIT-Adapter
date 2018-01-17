@@ -31,7 +31,9 @@ import org.envirocar.bigiot.wfsadapter.exception.KeyNotFoundException;
 import org.envirocar.bigiot.wfsadapter.exception.RequestProcessingException;
 import org.envirocar.bigiot.wfsadapter.filter.BoundingBoxFilter;
 import org.envirocar.bigiot.wfsadapter.filter.CustomWFSFilter;
+import org.envirocar.bigiot.wfsadapter.filter.FeatureIDFilter;
 import org.envirocar.bigiot.wfsadapter.filter.MaxFeaturesFilter;
+import org.envirocar.bigiot.wfsadapter.filter.PropertyNameFilter;
 import org.envirocar.bigiot.wfsadapter.filter.SortByFilter;
 
 import org.slf4j.Logger;
@@ -135,6 +137,22 @@ public abstract class AbstractRequestHandler<E> implements AccessRequestHandler,
             return new BoundingBoxFilter(minA,minB,maxA,maxB);
         }
         return new BoundingBoxFilter(null,null,null,null);
+    }
+    
+    protected FeatureIDFilter getFeatureIDFilter(Map<String, Object> input) throws KeyNotFoundException {
+        String featureID = checkAndGetValue(FEATURE_ID_FILTER, input);
+        if (featureID != null) {
+            return new FeatureIDFilter(featureID);
+        }
+        return new FeatureIDFilter(null);
+    }
+    
+    protected PropertyNameFilter getPropertyNameFilter(Map<String, Object> input) throws KeyNotFoundException {
+        String properties = checkAndGetValue(PROPERTY_NAME_FILTER, input);
+        if (properties != null) {
+            return new PropertyNameFilter(properties);
+        }
+        return new PropertyNameFilter(null);
     }
 
     public abstract E processRequest(OfferingDescription od, Map<String, Object> map) throws RequestProcessingException;

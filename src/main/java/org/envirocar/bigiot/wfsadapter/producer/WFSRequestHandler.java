@@ -37,6 +37,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.Map;
+import org.envirocar.bigiot.wfsadapter.filter.FeatureIDFilter;
+import org.envirocar.bigiot.wfsadapter.filter.PropertyNameFilter;
 
 /**
  *
@@ -64,6 +66,8 @@ public class WFSRequestHandler extends AbstractRequestHandler<WFSFeatureCollecti
             MaxFeaturesFilter maxFeaturesFilter = null;
             SortByFilter sortByFilter = null;
             BoundingBoxFilter bbFilter = null;
+            FeatureIDFilter featureIDFilter = null;
+            PropertyNameFilter propertyNameFilter = null;
 
             if (input.containsKey(CUSTOM_WFS_FILTER)) {
                 customFilter = getCustomWFSFilter(input);
@@ -72,18 +76,33 @@ public class WFSRequestHandler extends AbstractRequestHandler<WFSFeatureCollecti
             if (input.containsKey(MAX_FEATURES_FILTER)) {
                 maxFeaturesFilter = getMaxFeaturesFilter(input);
             }
-            
+
             if (input.containsKey(SORT_BY_FILTER)) {
                 sortByFilter = getSortByFilter(input);
             }
-            
+
             if (input.containsKey(BOUNDING_BOX_FILTER)) {
                 bbFilter = getBoundingBoxFilter(input);
             }
 
-            WFSFilter filter = new WFSFilter(customFilter, maxFeaturesFilter, sortByFilter, bbFilter);
+            if (input.containsKey(FEATURE_ID_FILTER)) {
+                featureIDFilter = getFeatureIDFilter(input);
+            }
+
+            if (input.containsKey(PROPERTY_NAME_FILTER)) {
+                propertyNameFilter = getPropertyNameFilter(input);
+            }
+
+            WFSFilter filter = new WFSFilter(
+                    customFilter,
+                    maxFeaturesFilter,
+                    sortByFilter,
+                    bbFilter,
+                    featureIDFilter,
+                    propertyNameFilter);
             WFSFeatureCollection test = wfsDAO.get(filter);
             return test;
+
         } catch (Exception e) {
 
         }
