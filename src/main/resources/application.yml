@@ -25,10 +25,10 @@ offering:
     expireDate: 2018-01-30T01:23:45
     licenseType: OPEN_DATA_LICENSE
     price:
-        # pricingModel options: FREE, PER_ACCESS, PER_BYTE, PER_MESSAGE, PER_MONTH. Default: FREE
+        # pricingModel options: { FREE, PER_ACCESS, PER_BYTE, PER_MESSAGE, PER_MONTH }, Default: FREE
         pricingModel: FREE
         price: 0.00
-        # currency options: Euros, USDollers.
+        # currency options: { Euros, USDollers }, Default: Euros
         currency: Euros
     geometry:
         name: geom
