@@ -59,6 +59,7 @@ public class WFSConfiguration {
         private String route;
         private String inCity;
         private String expireDate;
+        private String accessStreamTimeout;
         private String licenseType;
 
         private Price price;
@@ -111,6 +112,14 @@ public class WFSConfiguration {
 
         public void setExpireDate(String expireDate) {
             this.expireDate = expireDate;
+        }
+
+        public String getAccessStreamTimeout() {
+            return accessStreamTimeout;
+        }
+
+        public void setAccessStreamTimeout(String accessStreamTimeout) {
+            this.accessStreamTimeout = accessStreamTimeout;
         }
 
         public String getLicenseType() {

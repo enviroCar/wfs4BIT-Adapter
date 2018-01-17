@@ -91,10 +91,6 @@ public abstract class OfferingProducer implements InitializingBean, DisposableBe
                     .addInputData(SORT_BY_FILTER, new RDFType(SCHEMA_SORT_BY_FILTER), ValueType.TEXT)
                     .addInputData(BOUNDING_BOX_FILTER, new RDFType(SCHEMA_BOUNDING_BOX_FILTER), ValueType.TEXT)
                     .withInformation(new Information(informationName, new RDFType(informationSchema)))
-                    //                .withExpirationInterval(Duration.standardDays(10))
-                    //                .withAccessStreamSessionTimeout(Duration.standardDays(10))
-                    //                .withPricingModel(BigIotTypes.PricingModel.FREE)
-                    //                .withLicenseType(BigIotTypes.LicenseType.OPEN_DATA_LICENSE)
                     .withProtocol(BigIotTypes.EndpointType.HTTP_GET)
                     .withAccessRequestHandler(getRequestHandler());
 
@@ -115,6 +111,15 @@ public abstract class OfferingProducer implements InitializingBean, DisposableBe
                 long millis = expireDate.getMillis() - now.getMillis();
                 if (millis > 1000) {
                     od.withExpirationInterval(millis);
+                }
+            }
+            if (wfsConfig.getOffering().getAccessStreamTimeout() != null
+                    && !wfsConfig.getOffering().getAccessStreamTimeout().isEmpty()) {
+                DateTimeFormatter TEMPORAL_TIME_PATTERN = DateTimeFormat.forPattern("yyyy-MM-dd'T'HH:mm:ss");
+                DateTime now = new DateTime();
+                DateTime expireDate = TEMPORAL_TIME_PATTERN.parseDateTime(wfsConfig.getOffering().getAccessStreamTimeout());
+                long millis = expireDate.getMillis() - now.getMillis();
+                if (millis > 1000) {
                     od.withAccessStreamSessionTimeout(millis);
                 }
             }
