@@ -29,11 +29,11 @@ ecosystem where European companies can exploit the business potential of the IoT
 
   1. Clone the repository: `git clone https://github.com/enviroCar/wfs4BIT-Adapter`.
 
-  2. Build the project: `mvn clean build`.
+  2. Build the project: `mvn clean install`.
 
 ## Configuration
 
-* Register an organization and a provider:
+#### Register an organization and a provider:
 
   1. First, register an organization on the [BIG IoT marketplace](https://market.big-iot.org/).
 
@@ -67,7 +67,7 @@ Specify the parameters for your Web Featire Service in [lines 15-22 of `applicat
 |**service**|YES|The service on your URL must be `wfs`. Other services are not supported yet.|[**service:** WFS](https://github.com/enviroCar/wfs4BIT-Adapter/blob/develop/src/main/resources/application.yml#L18)|
 |**version**|YES|The version of your WFS. Supported version options are: `1.0.0`,`1.1.0`, and `2.0.0`. |[**version:** 1.0.0](https://github.com/enviroCar/wfs4BIT-Adapter/blob/develop/src/main/resources/application.yml#L19)|
 |**request**|YES|The request to your WFS must be `GetFeature`. Other requests are not supported yet.|[**request:** GetFeature](https://github.com/enviroCar/wfs4BIT-Adapter/blob/develop/src/main/resources/application.yml#L20)|
-|**typeName**|YES|The typeName is the name of the feature type, that you want to push in the marketplace.|[**typeName:** cite:roadsegments](https://github.com/enviroCar/wfs4BIT-Adapter/blob/develop/src/main/resources/application.yml#L21)|
+|**typeName**|YES|The typeName is the name of the feature type, that you want to offer in the marketplace.|[**typeName:** cite:roadsegments](https://github.com/enviroCar/wfs4BIT-Adapter/blob/develop/src/main/resources/application.yml#L21)|
 |**outputFormat**|YES|The outputFormat of your data. This WFS-Adapter supports outputFormat GML. Supported versions are 2.0 - 3.1. GML 3.2 is currently not supported. The outputFormat **_must not_** be URL-encoded.|[**outputFormat:** text/xml; subtype=gml/2.1.2](https://github.com/enviroCar/wfs4BIT-Adapter/blob/develop/src/main/resources/application.yml#L22)|
 
 #### Specify the BIG IoT offering:
@@ -76,19 +76,19 @@ The information for the offering registration are located starting from [line 15
 The `application.yml` file is located in `wfsadapter\src\main\resources\`.
 You must specify the following specifications for your WFS and your desired BIG IoT offering:
 
-| Config Parameter|Required|Description|Example|
+|Config Parameter|Required|Description|Example|
 |:------|:---:|:-------------:|:-----------|
-| **`url`**| YES|The URL of your WFS including URL parameters request=GetFeature, typeName for the feature of interest, and outputFormat. Currently supported outputFormats are gml 2.X and gml 3.1. The URL should be URL-encoded. |[**url:** `http://processing.envirocar.org:9090/geoserver/cite/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=cite:roadsegments&outputFormat=text%2Fxml%3B%20subtype%3Dgml%2F2.1.2`](https://github.com/enviroCar/wfs4BIT-Adapter/blob/develop/src/main/resources/application.yml#L17)  |
-| **`local_id`**|YES| The local_id identifies this offering on the BIG IoT marketplace. It must be unique and distinguishable among all offerings within your organization and provider. | [**local_id:** wfsOfferings-roadsegments](https://github.com/enviroCar/wfs4BIT-Adapter/blob/develop/src/main/resources/application.yml#L18) |
-| **`withInformation`**|YES| The withInformation consists of the name and a schema for your offering. It will be added to the offeringDescription with `.withInformation(new Information(NAME, new RDFType(SCHEMA)));` | See [example on Github](https://github.com/enviroCar/wfs4BIT-Adapter/blob/develop/src/main/resources/application.yml#L19-L21) |
-| **`route`**|NO| The route is the `/bigiot/access/ROUTE` access point to your data on the marketplace. It will be added to the offeringDescription with `.withRoute(ROUTE);` |[**route:** roadsegments](https://github.com/enviroCar/wfs4BIT-Adapter/blob/develop/src/main/resources/application.yml#L23) |
-| **`inCity`**|NO| The inCity specifies a name of a city, to which the data of your offering refer to. It will be added to the offeringDescription with `.inCity(INCITY)`|[**inCity:** Barcelona](https://github.com/enviroCar/wfs4BIT-Adapter/blob/develop/src/main/resources/application.yml#L24)|
-| **`expireDate`**|NO| The expireDate specifies the DateTime until which your offering is marked as activated on the marketplace. Once, the exireDate is reached, the offering will become marked is not activated. The DateTime must be specified in `yyyy-MM-ddThh:mm:ss` (ISO8601 format).|[**expireDate**: 2018-02-30T01:23:45](https://github.com/enviroCar/wfs4BIT-Adapter/blob/develop/src/main/resources/application.yml#L25)|
-| **`accessStreamTimeout`**|NO| The accessStreamTimeout specifies **TODO: finish this sentence**. The DateTime must be specified in `yyyy-MM-ddThh:mm:ss` (ISO8601 format).|[**accessStreamTimeout**: 2018-02-30T01:23:45](https://github.com/enviroCar/wfs4BIT-Adapter/blob/develop/src/main/resources/application.yml#L26)|
-|**`licenseType`**|NO| The licenseType specifies the license of your offering's data. Possible options are `OPEN_DATA_LICENSE`,`CREATIVE_COMMONS`,`NON_COMMERCIAL_DATA_LICENSE`.| [**licenseType**: OPEN_DATA_LICENSE](https://github.com/enviroCar/wfs4BIT-Adapter/blob/develop/src/main/resources/application.yml#L27) |
-|**`price`**|NO| The price must specify `pricingModel`, `price`, and `currency`. The pricingModel can be one of `FREE`, `PER_ACCESS`, `PER_BYTE`, `PER_MESSAGE`, `PER_MONTH`. The price must be a double value. The currency can be one of `Euros`, `USDollars`}. | See [Example on Github](https://github.com/enviroCar/wfs4BIT-Adapter/blob/develop/src/main/resources/application.yml#L28-L33)|
-| **`geometry`**|NO| If your WFS data contains features with default geometries, then you should specify the geometry property name and choose a schema. The geometry parameter is not required, but highly recommended, so that marketplace users can define and apply a custom spatial filter to your offering. | see example [on GitHub](https://github.com/enviroCar/wfs4BIT-Adapter/blob/develop/src/main/resources/application.yml#L34-L36) |
-| **`outputData`**|NO| You must specify the properties delivered by your WFS, that you want to add as OfferingOutputData to the BIG IoT marketplace offering. For each property, you must specify NAME and SCHEMA of the property. | see example [on GitHub](https://github.com/enviroCar/wfs4BIT-Adapter/blob/develop/src/main/resources/application.yml#L37-L147) |
+| **`local_id`**|YES| The local_id identifies this offering on the BIG IoT marketplace. It must be unique and distinguishable among all offerings within your organization and provider. | [**local_id:** wfsOfferings-roadsegments](https://github.com/enviroCar/wfs4BIT-Adapter/blob/develop/src/main/resources/application.yml#L26) |
+| **`withInformation`**|YES| The withInformation consists of the name and a schema for your offering. It will be added to the offeringDescription with `.withInformation(new Information(NAME, new RDFType(SCHEMA)));` | See [example on Github](https://github.com/enviroCar/wfs4BIT-Adapter/blob/develop/src/main/resources/application.yml#L27-L29) |
+| **`route`**|NO| The route is the `/bigiot/access/ROUTE` access point to your data on the marketplace. It will be added to the offeringDescription with `.withRoute(ROUTE);` |[**route:** roadsegments](https://github.com/enviroCar/wfs4BIT-Adapter/blob/develop/src/main/resources/application.yml#L31) |
+| **`inCity`**|NO| The inCity specifies a name of a city, to which the data of your offering refer to. It will be added to the offeringDescription with `.inCity(INCITY)`|[**inCity:** Barcelona](https://github.com/enviroCar/wfs4BIT-Adapter/blob/develop/src/main/resources/application.yml#L32)|
+| **`expireDate`**|NO| The expireDate specifies the DateTime until which your offering is marked as activated on the marketplace. Once, the exireDate is reached, the offering will become marked is not activated. The DateTime must be specified in `yyyy-MM-ddThh:mm:ss` (ISO8601 format).|[**expireDate**: 2018-02-30T01:23:45](https://github.com/enviroCar/wfs4BIT-Adapter/blob/develop/src/main/resources/application.yml#L33)|
+| **`accessStreamTimeout`**|NO| The accessStreamTimeout specifies **TODO: finish this sentence**. The DateTime must be specified in `yyyy-MM-ddThh:mm:ss` (ISO8601 format).|[**accessStreamTimeout**: 2018-02-30T01:23:45](https://github.com/enviroCar/wfs4BIT-Adapter/blob/develop/src/main/resources/application.yml#L34)|
+|**`licenseType`**|NO| The licenseType specifies the license of your offering's data. Possible options are `OPEN_DATA_LICENSE`,`CREATIVE_COMMONS`,`NON_COMMERCIAL_DATA_LICENSE`.| [**licenseType**: OPEN_DATA_LICENSE](https://github.com/enviroCar/wfs4BIT-Adapter/blob/develop/src/main/resources/application.yml#L35) |
+|**`price`**|NO| The price must specify `pricingModel`, `price`, and `currency`. The pricingModel can be one of `FREE`, `PER_ACCESS`, `PER_BYTE`, `PER_MESSAGE`, `PER_MONTH`. The price must be a double value. The currency can be one of `Euros`, `USDollars`}. | See [Example on Github](https://github.com/enviroCar/wfs4BIT-Adapter/blob/develop/src/main/resources/application.yml#L36-L41)|
+| **`geometry`**|NO| If your WFS data contains features with default geometries, then you should specify the geometry property name and choose a schema. The geometry parameter is not required, but highly recommended, so that marketplace users can define and apply a custom spatial filter to your offering. | see example [on GitHub](https://github.com/enviroCar/wfs4BIT-Adapter/blob/develop/src/main/resources/application.yml#L42-L44) |
+|**`mapNullValues`**|NO| Some features might not contain all of your specified OutputDatas. In that case, the output for that feature will not contain that OutputData - if `mapNullValues` is set to `true`. If `mapNullValues` is set to `false`, the output for that feature will still contain that OutputData with value `null`. If missing or not set, _mapNullValues_ is set to _true_. | [**mapNullValues:** true](https://github.com/enviroCar/wfs4BIT-Adapter/blob/develop/src/main/resources/application.yml#L45)|
+| **`outputData`**|NO| You must specify the properties delivered by your WFS, that you want to add as OfferingOutputData to the BIG IoT marketplace offering. For each property, you must specify NAME and SCHEMA of the property. | see example [on GitHub](https://github.com/enviroCar/wfs4BIT-Adapter/blob/develop/src/main/resources/application.yml#L45-L155) |
 
 ## How to deploy
 **_TODO_**

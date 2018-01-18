@@ -34,7 +34,7 @@ import org.envirocar.bigiot.wfsadapter.model.WFSProperty;
  * @author Maurin Radtke <m.radtke@52north.org>
  */
 public class WFSFeatureMemberEncoder extends BaseJSONEncoder<WFSFeatureMember> {
-
+    
     @Override
     public void serialize(WFSFeatureMember feature, JsonGenerator gen, SerializerProvider serializers) throws IOException, JsonProcessingException {
 

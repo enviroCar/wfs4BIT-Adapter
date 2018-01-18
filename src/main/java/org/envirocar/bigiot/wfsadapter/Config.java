@@ -64,7 +64,7 @@ public class Config {
     }
 
     public static class WFSConfigurations {
-        
+
         private String url;
         private String service;
         private String version;
@@ -162,6 +162,7 @@ public class Config {
         private String expireDate;
         private String accessStreamTimeout;
         private String licenseType;
+        private Boolean mapNullValues;
 
         private Price price;
 
@@ -242,6 +243,14 @@ public class Config {
 
         public void setOfferingOutputs(String offeringOutputs) {
             this.offeringOutputs = offeringOutputs;
+        }
+
+        public Boolean getMapNullValues() {
+            return mapNullValues;
+        }
+
+        public void setMapNullValues(String mapNullValues) {
+            this.mapNullValues = !mapNullValues.equals("false");
         }
 
         public List<OutputData> getOutputData() {

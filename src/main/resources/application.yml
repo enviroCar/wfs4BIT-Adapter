@@ -42,6 +42,7 @@ offering:
     geometry:
         name: geom
         schema: http://schema.org/line
+    mapNullValues: true
     outputData:
         -   name: OSMID
             schema: http://schema.org/identifier
@@ -153,6 +154,7 @@ offering:
             schema: http://schema.org/fuelConsumption
         -   name : numConsumption
             schema: SCHEMA_AMOUNT
+    
 
 #    url: http://processing.envirocar.org:9090/geoserver/sf/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=sf:roads&outputFormat=gml3
 #    local_id: test-wfsOfferings-spearfish-roads

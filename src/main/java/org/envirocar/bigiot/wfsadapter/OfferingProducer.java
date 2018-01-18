@@ -71,6 +71,7 @@ public abstract class OfferingProducer implements InitializingBean, DisposableBe
 
     @Override
     public void destroy() throws Exception {
+        this.provider.deregister(offeringDescription.getOfferingId());
         this.offeringDescription.deregister();
         this.provider.terminate();
     }

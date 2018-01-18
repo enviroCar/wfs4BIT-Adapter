@@ -48,7 +48,6 @@ import org.slf4j.Logger;
 
 import javax.xml.parsers.ParserConfigurationException;
 import org.envirocar.bigiot.wfsadapter.Config.WFSConfigurations;
-import org.envirocar.bigiot.wfsadapter.exception.OfferingConfigParamMissingException;
 import org.envirocar.bigiot.wfsadapter.exception.WFSConfigParamMissingException;
 
 import org.xml.sax.SAXException;
@@ -76,11 +75,11 @@ public class DAO {
         try {
             WFSConfigurations wfs = wfsConfig.getWfs();
             urlString = wfs.getUrl();
-            urlString += "?service=" +wfs.getService();
-            urlString += "&version=" +wfs.getVersion();
-            urlString += "&request=" +wfs.getRequest();
-            urlString += "&typeName=" +wfs.getTypeName();
-            urlString += "&outputFormat=" +wfs.getOutputFormat();
+            urlString += "?service=" + wfs.getService();
+            urlString += "&version=" + wfs.getVersion();
+            urlString += "&request=" + wfs.getRequest();
+            urlString += "&typeName=" + wfs.getTypeName();
+            urlString += "&outputFormat=" + wfs.getOutputFormat();
         } catch (WFSConfigParamMissingException wcpme) {
             wcpme.printStackTrace();
         }
@@ -107,6 +106,7 @@ public class DAO {
         if (filter.hasPropertyNameFilter()) {
             propertyNameParam = filter.getPropertyNameFilter().string();
             urlString += "&propertyName=" + propertyNameParam;
+            urlString += "," + wfsConfig.getOffering().getGeometry().getName();
         }
         try {
             URL url = new URL(urlString);
@@ -134,7 +134,6 @@ public class DAO {
 
             List<OutputData> outputDatas = wfsConfig.getOffering()
                     .getOutputData();
-
             OfferingGeometry og = wfsConfig.getOffering().getGeometry();
             String offeringGeometryName = og.getName();
             String offeringGeometrySchema = og.getSchema();
@@ -142,6 +141,7 @@ public class DAO {
             // create model:
             WFSFeatureCollection fc = new WFSFeatureCollection();
             Iterator<SimpleFeatureImpl> iter = features.iterator();
+            Boolean mapNullValues = wfsConfig.getOffering().getMapNullValues();
             while (iter.hasNext()) {
                 SimpleFeatureImpl feature = iter.next();
 
@@ -151,11 +151,14 @@ public class DAO {
                 fm.setGeom(new WFSProperty(offeringGeometryName, feature.getDefaultGeometry().toString(), offeringGeometrySchema));
 
                 // add specified properties into featureMember:
-                for (OutputData outputData : outputDatas) {
-                    fm.addProperty(new WFSProperty(outputData.getName(),
-                            feature.getAttribute(outputData.getName()),
-                            outputData.getSchema()));
-                }
+                outputDatas.forEach((outputData) -> {
+                    Object attributeValue = feature.getAttribute(outputData.getName());
+                    if (!mapNullValues || (mapNullValues && attributeValue != null)) {
+                        fm.addProperty(new WFSProperty(outputData.getName(),
+                                feature.getAttribute(outputData.getName()),
+                                outputData.getSchema()));
+                    }
+                });
 
                 fc.addFeature(fm);
             }
