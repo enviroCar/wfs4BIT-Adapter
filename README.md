@@ -5,9 +5,6 @@
 BIG IoT is a European project to enable IoT Ecosystems. The BIG IoT API and the BIG IoT Marketplace form an IoT 
 ecosystem where European companies can exploit the business potential of the IoT sector.
 
-enviroCar was successfully applied in the First Open Call of the EC funded BIG IoT project. Thus, the enviroCar 
-project is one of the first projects to appear on the [BIG IoT marketplace](https://market.big-iot.org/).
-
 
 ## Libraries and Licenses
 
@@ -59,6 +56,19 @@ project is one of the first projects to appear on the [BIG IoT marketplace](http
 #### Configure application address and port:
 
 * Change address in [line 12 of `application.yml`](https://github.com/enviroCar/wfs4BIT-Adapter/blob/develop/src/main/resources/application.yml#L12) and port in [line 13 of `application.yml`](https://github.com/enviroCar/wfs4BIT-Adapter/blob/develop/src/main/resources/application.yml#L13) to the specifications of your desire. The application.yml file is located in `wfs4BIT-Adapter\src\main\resources\`.
+
+#### Specify the WFS:
+
+Specify the parameters for your Web Featire Service in [lines 15-22 of `application.yml`](https://github.com/enviroCar/wfs4BIT-Adapter/blob/develop/src/main/resources/application.yml#L15-L22).
+
+| Config Parameters|Required|Description|Example|
+|:----:|:----:|:----:|:----:|
+|**url**|YES|The entire url-encoded base URL to your WebFeatureService|[**url:** http://processing.envirocar.org:9090/geoserver/cite/ow](https://github.com/enviroCar/wfs4BIT-Adapter/blob/develop/src/main/resources/application.yml#L17)|
+|**service**|YES|The service on your URL must be `wfs`. Other services are not supported yet.|[**service:** WFS](https://github.com/enviroCar/wfs4BIT-Adapter/blob/develop/src/main/resources/application.yml#L18)|
+|**version**|YES|The version of your WFS. Supported version options are: `1.0.0`,`1.1.0`, and `2.0.0`. |[**version:** 1.0.0](https://github.com/enviroCar/wfs4BIT-Adapter/blob/develop/src/main/resources/application.yml#L19)|
+|**request**|YES|The request to your WFS must be `GetFeature`. Other requests are not supported yet.|[**request:** GetFeature](https://github.com/enviroCar/wfs4BIT-Adapter/blob/develop/src/main/resources/application.yml#L20)|
+|**typeName**|YES|The typeName is the name of the feature type, that you want to push in the marketplace.|[**typeName:** cite:roadsegments](https://github.com/enviroCar/wfs4BIT-Adapter/blob/develop/src/main/resources/application.yml#L21)|
+|**outputFormat**|YES|The outputFormat of your data. This WFS-Adapter supports outputFormat GML. Supported versions are 2.0 - 3.1. GML 3.2 is currently not supported. The outputFormat **_must not_** be URL-encoded.|[**outputFormat:** text/xml; subtype=gml/2.1.2](https://github.com/enviroCar/wfs4BIT-Adapter/blob/develop/src/main/resources/application.yml#L22)|
 
 #### Specify the BIG IoT offering:
 
@@ -133,3 +143,6 @@ GetFeature requests can return potentially a large amount of data. This **wfs4BI
 
 This project has received funding from the European Union's Horizon 2020 research and innovation programme 
 under grant agreement No 688038. 
+
+[enviroCar](https://enviroCar.org) was successfully applied in the First Open Call of the EC funded BIG IoT project. Thus, the enviroCar 
+project is one of the first projects to appear on the [BIG IoT marketplace](https://market.big-iot.org/).
