@@ -12,9 +12,17 @@ bigiot:
         address: localhost
         port: 7778
         
+wfs:
+    # required parameters:
+    url: http://processing.envirocar.org:9090/geoserver/cite/ows
+    service: WFS
+    version: 1.0.0
+    request: GetFeature
+    typeName: cite:roadsegments
+    outputFormat: text/xml; subtype=gml/2.1.2
+    
 offering:
     # required parameters:
-    url: http://processing.envirocar.org:9090/geoserver/cite/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=cite:roadsegments&outputFormat=text%2Fxml%3B%20subtype%3Dgml%2F2.1.2
     local_id: roadsegments-offering
     withInformation:
         name:   (Testing) / WFS-OFFERING-ROADSEGMENTS

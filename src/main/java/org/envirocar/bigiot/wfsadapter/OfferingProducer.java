@@ -31,14 +31,14 @@ import org.eclipse.bigiot.lib.model.ValueType;
 import org.eclipse.bigiot.lib.offering.RegistrableOfferingDescription;
 import org.eclipse.bigiot.lib.offering.RegistrableOfferingDescriptionChain;
 
-import org.envirocar.bigiot.wfsadapter.WFSConfiguration.OfferingConfigurations.OutputData;
+import org.envirocar.bigiot.wfsadapter.Config.OfferingConfigurations.OutputData;
 
 import java.util.List;
 import org.eclipse.bigiot.lib.model.BigIotTypes;
 import org.eclipse.bigiot.lib.model.Price.Euros;
 import org.eclipse.bigiot.lib.model.Price.USDollars;
-import org.envirocar.bigiot.wfsadapter.WFSConfiguration.OfferingConfigurations.OfferingGeometry;
-import org.envirocar.bigiot.wfsadapter.exception.RequiredOfferingConfigParamMissingException;
+import org.envirocar.bigiot.wfsadapter.Config.OfferingConfigurations.OfferingGeometry;
+import org.envirocar.bigiot.wfsadapter.exception.OfferingConfigParamMissingException;
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
@@ -53,7 +53,7 @@ public abstract class OfferingProducer implements InitializingBean, DisposableBe
     private String contact;
 
     @Autowired
-    private WFSConfiguration wfsConfig;
+    private Config wfsConfig;
 
     @Autowired
     protected Provider provider;
@@ -207,7 +207,7 @@ public abstract class OfferingProducer implements InitializingBean, DisposableBe
             }
 
             return od;
-        } catch (RequiredOfferingConfigParamMissingException rocpme) {
+        } catch (OfferingConfigParamMissingException rocpme) {
             rocpme.printStackTrace();
         }
         return null;

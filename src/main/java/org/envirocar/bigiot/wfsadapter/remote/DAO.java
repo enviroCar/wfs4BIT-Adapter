@@ -24,9 +24,9 @@ import org.springframework.stereotype.Component;
 import org.envirocar.bigiot.wfsadapter.model.WFSFeatureCollection;
 import org.envirocar.bigiot.wfsadapter.model.WFSFeatureMember;
 import org.envirocar.bigiot.wfsadapter.model.WFSProperty;
-import org.envirocar.bigiot.wfsadapter.WFSConfiguration;
-import org.envirocar.bigiot.wfsadapter.WFSConfiguration.OfferingConfigurations.OutputData;
-import org.envirocar.bigiot.wfsadapter.WFSConfiguration.OfferingConfigurations.OfferingGeometry;
+import org.envirocar.bigiot.wfsadapter.Config;
+import org.envirocar.bigiot.wfsadapter.Config.OfferingConfigurations.OutputData;
+import org.envirocar.bigiot.wfsadapter.Config.OfferingConfigurations.OfferingGeometry;
 import org.envirocar.bigiot.wfsadapter.filter.WFSFilter;
 
 import java.util.ArrayList;
@@ -47,7 +47,9 @@ import org.slf4j.LoggerFactory;
 import org.slf4j.Logger;
 
 import javax.xml.parsers.ParserConfigurationException;
-import org.envirocar.bigiot.wfsadapter.exception.RequiredOfferingConfigParamMissingException;
+import org.envirocar.bigiot.wfsadapter.Config.WFSConfigurations;
+import org.envirocar.bigiot.wfsadapter.exception.OfferingConfigParamMissingException;
+import org.envirocar.bigiot.wfsadapter.exception.WFSConfigParamMissingException;
 
 import org.xml.sax.SAXException;
 
@@ -59,7 +61,7 @@ import org.xml.sax.SAXException;
 public class DAO {
 
     @Autowired
-    private WFSConfiguration wfsConfig;
+    private Config wfsConfig;
 
     private static final Logger LOG = LoggerFactory.getLogger(DAO.class);
 
@@ -72,9 +74,15 @@ public class DAO {
         String propertyNameParam = null;
         String urlString = "";
         try {
-            urlString = wfsConfig.getOffering().getUrl();
-        } catch (RequiredOfferingConfigParamMissingException rocpme) {
-            rocpme.printStackTrace();
+            WFSConfigurations wfs = wfsConfig.getWfs();
+            urlString = wfs.getUrl();
+            urlString += "?service=" +wfs.getService();
+            urlString += "&version=" +wfs.getVersion();
+            urlString += "&request=" +wfs.getRequest();
+            urlString += "&typeName=" +wfs.getTypeName();
+            urlString += "&outputFormat=" +wfs.getOutputFormat();
+        } catch (WFSConfigParamMissingException wcpme) {
+            wcpme.printStackTrace();
         }
         if (filter.hasCustomWFSFilter()) {
             customWFSFilterParam = filter.getCustomWFSFilter().string();

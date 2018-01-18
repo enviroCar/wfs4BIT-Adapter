@@ -29,15 +29,15 @@ import org.eclipse.bigiot.lib.offering.RegistrableOfferingDescription;
 
 import org.envirocar.bigiot.wfsadapter.AbstractRequestHandler;
 import org.envirocar.bigiot.wfsadapter.OfferingProducer;
-import org.envirocar.bigiot.wfsadapter.WFSConfiguration;
-import org.envirocar.bigiot.wfsadapter.WFSConfiguration.OfferingConfigurations.OutputData;
-import org.envirocar.bigiot.wfsadapter.WFSConfiguration.OfferingConfigurations.OfferingGeometry;
+import org.envirocar.bigiot.wfsadapter.Config;
+import org.envirocar.bigiot.wfsadapter.Config.OfferingConfigurations.OutputData;
+import org.envirocar.bigiot.wfsadapter.Config.OfferingConfigurations.OfferingGeometry;
 
 import java.util.List;
 import org.eclipse.bigiot.lib.model.BigIotTypes;
 import org.eclipse.bigiot.lib.model.Price;
 import org.eclipse.bigiot.lib.offering.RegistrableOfferingDescriptionChain;
-import org.envirocar.bigiot.wfsadapter.exception.RequiredOfferingConfigParamMissingException;
+import org.envirocar.bigiot.wfsadapter.exception.OfferingConfigParamMissingException;
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
@@ -53,7 +53,7 @@ public class WFSProducer extends OfferingProducer {
     private WFSRequestHandler requestHandler;
 
     @Autowired
-    private WFSConfiguration wfsConfig;
+    private Config wfsConfig;
 
     /**
      *
@@ -194,7 +194,7 @@ public class WFSProducer extends OfferingProducer {
                                 ValueType.TEXT));
             }
             return od;
-        } catch (RequiredOfferingConfigParamMissingException rocpme) {
+        } catch (OfferingConfigParamMissingException rocpme) {
             rocpme.printStackTrace();
         }
         return null;

@@ -27,14 +27,26 @@ package org.envirocar.bigiot.wfsadapter.exception;
  *
  * @author Maurin Radtke <m.radtke@52north.org>
  */
-public class RequiredOfferingConfigParamMissingException extends Exception {
+public class OfferingConfigParamMissingException extends Exception {
 
-    public RequiredOfferingConfigParamMissingException() {
-        super();
+    private int errorCode;
+
+    public OfferingConfigParamMissingException(String msg) {
+        this(msg, 500);
     }
 
-    public RequiredOfferingConfigParamMissingException(String message) {
-        super(message);
+    public OfferingConfigParamMissingException(String msg, int errorCode) {
+        super(msg);
+        this.errorCode = errorCode;
+    }
+
+    public int getErrorCode() {
+        return errorCode;
+    }
+
+    public OfferingConfigParamMissingException setErrorCode(int errorCode) {
+        this.errorCode = errorCode;
+        return this;
     }
 
 }

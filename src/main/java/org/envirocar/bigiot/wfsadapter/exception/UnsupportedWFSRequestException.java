@@ -16,30 +16,32 @@
  * You should have received a copy of the GNU General Public License along
  * with the enviroCar app. If not, see http://www.gnu.org/licenses/.
  */
-package org.envirocar.bigiot.wfsadapter;
-
-import org.springframework.boot.Banner;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.builder.SpringApplicationBuilder;
-
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Import;
+package org.envirocar.bigiot.wfsadapter.exception;
 
 /**
  *
  * @author Maurin Radtke <m.radtke@52north.org>
  */
-@SpringBootApplication
-@ComponentScan({"org.envirocar.bigiot"})
-@Import(RemoteConfiguration.class)
-public class BIGIoTWFSAdapter {
+public class UnsupportedWFSRequestException extends Exception {
 
-    public static void main(String[] args) {
-        new SpringApplicationBuilder(BIGIoTWFSAdapter.class)
-                .properties("spring.config.name:application,secret")
-                .web(true)
-                .bannerMode(Banner.Mode.CONSOLE)
-                .run(args);
+    private int errorCode;
+
+    public UnsupportedWFSRequestException(String msg) {
+        this(msg, 500);
     }
-    
+
+    public UnsupportedWFSRequestException(String msg, int errorCode) {
+        super(msg);
+        this.errorCode = errorCode;
+    }
+
+    public int getErrorCode() {
+        return errorCode;
+    }
+
+    public UnsupportedWFSRequestException setErrorCode(int errorCode) {
+        this.errorCode = errorCode;
+        return this;
+    }
+
 }

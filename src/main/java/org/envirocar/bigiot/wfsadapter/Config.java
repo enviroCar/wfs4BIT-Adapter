@@ -23,9 +23,13 @@
  */
 package org.envirocar.bigiot.wfsadapter;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.List;
-import org.eclipse.bigiot.lib.exceptions.IncompleteOfferingDescriptionException;
-import org.envirocar.bigiot.wfsadapter.exception.RequiredOfferingConfigParamMissingException;
+import org.envirocar.bigiot.wfsadapter.exception.OfferingConfigParamMissingException;
+import org.envirocar.bigiot.wfsadapter.exception.UnsupportedWFSRequestException;
+import org.envirocar.bigiot.wfsadapter.exception.UnsupportedWFSServiceException;
+import org.envirocar.bigiot.wfsadapter.exception.WFSConfigParamMissingException;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
@@ -38,9 +42,18 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @EnableConfigurationProperties
 @ConfigurationProperties
-public class WFSConfiguration {
+public class Config {
 
+    private WFSConfigurations wfs;
     private OfferingConfigurations offering;
+
+    public WFSConfigurations getWfs() {
+        return wfs;
+    }
+
+    public void setWfs(WFSConfigurations wfs) {
+        this.wfs = wfs;
+    }
 
     public OfferingConfigurations getOffering() {
         return offering;
@@ -50,9 +63,97 @@ public class WFSConfiguration {
         this.offering = offering;
     }
 
+    public static class WFSConfigurations {
+        
+        private String url;
+        private String service;
+        private String version;
+        private String request;
+        private String typeName;
+        private String outputFormat;
+
+        public String getUrl() throws WFSConfigParamMissingException {
+            if (url == null
+                    || url.length() == 0) {
+                throw new WFSConfigParamMissingException("Missing required WFS parameter in application.yml: url");
+            }
+            return url;
+        }
+
+        public void setUrl(String url) {
+            this.url = url;
+        }
+
+        public String getService() throws WFSConfigParamMissingException {
+            if (service == null
+                    || service.length() == 0) {
+                throw new WFSConfigParamMissingException("Missing required WFS parameter in application.yml: service");
+            }
+            return service;
+        }
+
+        public void setService(String service) throws UnsupportedWFSServiceException {
+            if (!service.toUpperCase().equals("WFS")) {
+                throw new UnsupportedWFSServiceException("The WFS service parameter is not supported: " + service);
+            }
+            this.service = "WFS";
+        }
+
+        public String getVersion() throws WFSConfigParamMissingException {
+            if (version == null
+                    || version.length() == 0) {
+                throw new WFSConfigParamMissingException("Missing required WFS parameter in application.yml: version");
+            }
+            return version;
+        }
+
+        public void setVersion(String version) {
+            this.version = version;
+        }
+
+        public String getRequest() throws WFSConfigParamMissingException {
+            if (request == null
+                    || request.length() == 0) {
+                throw new WFSConfigParamMissingException("Missing required WFS parameter in application.yml: request");
+            }
+            return request;
+        }
+
+        public void setRequest(String request) throws UnsupportedWFSRequestException {
+            if (!request.toUpperCase().equals("GETFEATURE")) {
+                throw new UnsupportedWFSRequestException("The WFS request parameter is not supported: " + request);
+            }
+            this.request = "GetFeature";
+        }
+
+        public String getTypeName() throws WFSConfigParamMissingException {
+            if (typeName == null
+                    || typeName.length() == 0) {
+                throw new WFSConfigParamMissingException("Missing required WFS parameter in application.yml: typeName");
+            }
+            return typeName;
+        }
+
+        public void setTypeName(String typeName) {
+            this.typeName = typeName;
+        }
+
+        public String getOutputFormat() throws WFSConfigParamMissingException {
+            if (outputFormat == null
+                    || outputFormat.length() == 0) {
+                throw new WFSConfigParamMissingException("Missing required WFS parameter in application.yml: outputFormat");
+            }
+            return outputFormat;
+        }
+
+        public void setOutputFormat(String outputFormat) throws UnsupportedEncodingException {
+            this.outputFormat = URLEncoder.encode(outputFormat, "UTF-8");
+        }
+
+    }
+
     public static class OfferingConfigurations {
 
-        private String url;
         private String local_id;
         private OfferingInformation withInformation;
         private String offeringOutputs;
@@ -68,20 +169,9 @@ public class WFSConfiguration {
 
         private List<OutputData> outputData;
 
-        public String getUrl() throws RequiredOfferingConfigParamMissingException {
-            if (url == null) {
-                throw new RequiredOfferingConfigParamMissingException("Missing required offering parameter in application.yml: url");
-            }
-            return url;
-        }
-
-        public void setUrl(String url) {
-            this.url = url;
-        }
-
-        public String getLocal_id() throws RequiredOfferingConfigParamMissingException {
+        public String getLocal_id() throws OfferingConfigParamMissingException {
             if (local_id == null) {
-                throw new RequiredOfferingConfigParamMissingException("Missing required offering parameter in application.yml: local_id");
+                throw new OfferingConfigParamMissingException("Missing required offering parameter in application.yml: local_id");
             }
             return local_id;
         }
@@ -207,9 +297,9 @@ public class WFSConfiguration {
             private String name;
             private String schema;
 
-            public String getName() throws RequiredOfferingConfigParamMissingException {
+            public String getName() throws OfferingConfigParamMissingException {
                 if (name == null) {
-                    throw new RequiredOfferingConfigParamMissingException("Missing required offering parameter in application.yml: withInformation.name");
+                    throw new OfferingConfigParamMissingException("Missing required offering parameter in application.yml: withInformation.name");
                 }
                 return name;
             }
@@ -218,9 +308,9 @@ public class WFSConfiguration {
                 this.name = name;
             }
 
-            public String getSchema() throws RequiredOfferingConfigParamMissingException {
+            public String getSchema() throws OfferingConfigParamMissingException {
                 if (schema == null) {
-                    throw new RequiredOfferingConfigParamMissingException("Missing required offering parameter in application.yml: withInformation.schema");
+                    throw new OfferingConfigParamMissingException("Missing required offering parameter in application.yml: withInformation.schema");
                 }
                 return schema;
             }
