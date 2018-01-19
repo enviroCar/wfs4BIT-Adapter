@@ -51,7 +51,7 @@ ecosystem where European companies can exploit the business potential of the IoT
         id: <YOUR_PROVIDER_ID>
         secret: <YOUR_PROVIDER_SECRET>
   ```
-  You find ID and SECRET of your provider and consumer on the marketplace, when being logged in into your organization.
+  You find ID and SECRET of your provider on the marketplace, when being logged in into your organization.
 
 #### Configure application address and port:
 
