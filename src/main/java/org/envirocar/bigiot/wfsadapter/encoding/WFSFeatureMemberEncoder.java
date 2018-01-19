@@ -44,6 +44,10 @@ public class WFSFeatureMemberEncoder extends BaseJSONEncoder<WFSFeatureMember> {
                 feature.getGeom().getPropertyName(),
                 feature.getGeom().getPropertyValue());
         
+        gen.writeObjectField(
+                feature.getFeatureID().getPropertyName(),
+                feature.getFeatureID().getPropertyValue());
+        
         List<WFSProperty> properties = feature.getProperties();
         
         for (WFSProperty p : properties) {

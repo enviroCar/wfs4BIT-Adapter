@@ -13,7 +13,6 @@ bigiot:
         port: 7778
         
 wfs:
-    # required parameters:
     url: http://processing.envirocar.org:9090/geoserver/cite/ows
     service: WFS
     version: 1.0.0
@@ -22,26 +21,25 @@ wfs:
     outputFormat: text/xml; subtype=gml/2.1.2
     
 offering:
-    # required parameters:
     local_id: roadsegments-offering
     withInformation:
         name:   (Testing) / WFS-OFFERING-ROADSEGMENTS
         schema: SCHEMA_ROAD_SEGMENTS
-    # optional parameters:
     route: roadsegments
     inCity: Barcelona
     expireDate: 2018-02-28T01:23:45
     accessStreamTimeout: 2018-02-28T01:23:45
     licenseType: OPEN_DATA_LICENSE
     price:
-        # pricingModel options: { FREE, PER_ACCESS, PER_BYTE, PER_MESSAGE, PER_MONTH }, Default: FREE
         pricingModel: FREE
         price: 0.00
-        # currency options: { Euros, USDollars }, Default: Euros
         currency: Euros
     geometry:
         name: geom
         schema: http://schema.org/line
+    featureIdentifier:
+        name: featureID
+        schema: http://schema.org/identifier
     mapNullValues: true
     outputData:
         -   name: OSMID
@@ -154,18 +152,3 @@ offering:
             schema: http://schema.org/fuelConsumption
         -   name : numConsumption
             schema: SCHEMA_AMOUNT
-    
-
-#    url: http://processing.envirocar.org:9090/geoserver/sf/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=sf:roads&outputFormat=gml3
-#    local_id: test-wfsOfferings-spearfish-roads
-#    offeringName: (Testing) / WFS-OFFERING-SPEARFISHROADS
-#    offeringSchema: SCHEMA_SPEARFISH_ROADS
-#    offeringRoute: roads
-#    geometry:
-#        name: geom
-#        schema: http://schema.org/roads
-#    outputData:
-#        -   name: cat
-#            schema: SCHEMA_MEOW
-#        -   name: label
-#            schema: SCHEMA_LABEL

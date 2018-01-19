@@ -47,6 +47,7 @@ import org.slf4j.LoggerFactory;
 import org.slf4j.Logger;
 
 import javax.xml.parsers.ParserConfigurationException;
+import org.envirocar.bigiot.wfsadapter.Config.OfferingConfigurations.OfferingFeatureIdentifier;
 import org.envirocar.bigiot.wfsadapter.Config.WFSConfigurations;
 import org.envirocar.bigiot.wfsadapter.exception.WFSConfigParamMissingException;
 
@@ -65,12 +66,12 @@ public class DAO {
     private static final Logger LOG = LoggerFactory.getLogger(DAO.class);
 
     public WFSFeatureCollection get(WFSFilter filter) throws ParserConfigurationException, SAXException {
-        String customWFSFilterParam = null;
-        String maxFeaturesFilterParam = null;
-        String sortByFilterParam = null;
-        String bbFilterParam = null;
-        String featureIDParam = null;
-        String propertyNameParam = null;
+        String customWFSFilterParam;
+        String maxFeaturesFilterParam;
+        String sortByFilterParam;
+        String bbFilterParam;
+        String featureIDParam;
+        String propertyNameParam;
         String urlString = "";
         try {
             WFSConfigurations wfs = wfsConfig.getWfs();
@@ -137,6 +138,10 @@ public class DAO {
             OfferingGeometry og = wfsConfig.getOffering().getGeometry();
             String offeringGeometryName = og.getName();
             String offeringGeometrySchema = og.getSchema();
+            
+            OfferingFeatureIdentifier ofi = wfsConfig.getOffering().getFeatureIdentifier();
+            String offeringFeatureIdentifierName = ofi.getName();
+            String offeringFeatureIdentifierSchema = ofi.getSchema();
 
             // create model:
             WFSFeatureCollection fc = new WFSFeatureCollection();
@@ -148,7 +153,14 @@ public class DAO {
                 WFSFeatureMember fm = new WFSFeatureMember();
 
                 // add default geometry:
-                fm.setGeom(new WFSProperty(offeringGeometryName, feature.getDefaultGeometry().toString(), offeringGeometrySchema));
+                if (feature.getDefaultGeometry() != null) {
+                    fm.setGeom(new WFSProperty(offeringGeometryName, feature.getDefaultGeometry().toString(), offeringGeometrySchema));
+                }
+
+                // add default featureID:
+                if (feature.getID() != null) {
+                    fm.setFeatureID(new WFSProperty(offeringFeatureIdentifierName, feature.getID(), offeringFeatureIdentifierSchema));
+                }
 
                 // add specified properties into featureMember:
                 outputDatas.forEach((outputData) -> {

@@ -29,15 +29,18 @@ public class WFSFeatureMember implements BaseEntity {
     
     private List<WFSProperty> properties;
     private WFSProperty geom;
+    private WFSProperty featureID;
     
     public WFSFeatureMember() {
         this.properties = new ArrayList<>();
         this.geom = null;
+        this.featureID = null;
     }
     
     public WFSFeatureMember(List<WFSProperty> properties) {
         this.properties = properties;
         this.geom = null;
+        this.featureID = null;
     }
 
     public List<WFSProperty> getProperties() {
@@ -59,5 +62,12 @@ public class WFSFeatureMember implements BaseEntity {
     public void setGeom(WFSProperty geom) {
         this.geom = geom;
     }
-    
+
+    public WFSProperty getFeatureID() {
+        return featureID;
+    }
+
+    public void setFeatureID(WFSProperty featureID) {
+        this.featureID = featureID;
+    }
 }

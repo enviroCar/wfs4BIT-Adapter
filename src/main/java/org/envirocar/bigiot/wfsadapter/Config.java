@@ -168,6 +168,8 @@ public class Config {
 
         private OfferingGeometry geometry;
 
+        private OfferingFeatureIdentifier featureIdentifier;
+
         private List<OutputData> outputData;
 
         public String getLocal_id() throws OfferingConfigParamMissingException {
@@ -261,6 +263,14 @@ public class Config {
             this.outputData = outputData;
         }
 
+        public OfferingFeatureIdentifier getFeatureIdentifier() {
+            return featureIdentifier;
+        }
+
+        public void setFeatureIdentifier(OfferingFeatureIdentifier featureIdentifier) {
+            this.featureIdentifier = featureIdentifier;
+        }
+
         public OfferingGeometry getGeometry() {
             return geometry;
         }
@@ -349,6 +359,29 @@ public class Config {
             public void setSchema(String schema) {
                 this.schema = schema;
             }
+        }
+
+        public static class OfferingFeatureIdentifier {
+
+            private String name;
+            private String schema;
+
+            public String getName() {
+                return name;
+            }
+
+            public void setName(String name) {
+                this.name = name;
+            }
+
+            public String getSchema() {
+                return schema;
+            }
+
+            public void setSchema(String schema) {
+                this.schema = schema;
+            }
+
         }
 
         public static class OfferingGeometry {
