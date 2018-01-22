@@ -47,6 +47,9 @@ import org.slf4j.LoggerFactory;
 import org.slf4j.Logger;
 
 import javax.xml.parsers.ParserConfigurationException;
+import org.eclipse.bigiot.lib.model.IOData;
+import org.eclipse.bigiot.lib.model.RDFType;
+import org.eclipse.bigiot.lib.model.ValueType;
 import org.envirocar.bigiot.wfsadapter.Config.OfferingConfigurations.OfferingFeatureIdentifier;
 import org.envirocar.bigiot.wfsadapter.Config.WFSConfigurations;
 import org.envirocar.bigiot.wfsadapter.exception.WFSConfigParamMissingException;
@@ -138,7 +141,7 @@ public class DAO {
             OfferingGeometry og = wfsConfig.getOffering().getGeometry();
             String offeringGeometryName = og.getName();
             String offeringGeometrySchema = og.getSchema();
-            
+
             OfferingFeatureIdentifier ofi = wfsConfig.getOffering().getFeatureIdentifier();
             String offeringFeatureIdentifierName = ofi.getName();
             String offeringFeatureIdentifierSchema = ofi.getSchema();
@@ -161,6 +164,13 @@ public class DAO {
                 if (feature.getID() != null) {
                     fm.setFeatureID(new WFSProperty(offeringFeatureIdentifierName, feature.getID(), offeringFeatureIdentifierSchema));
                 }
+
+                // add NominatimRefLink to osmid as OutputData
+                fm.addProperty(new WFSProperty(
+                        "OSM-Ref",
+                        "https://nominatim.openstreetmap.org/lookup?osm_ids=W" + feature.getAttribute("OSMID"),
+                        "SCHEMA_OSM_LOOKUP_NOMINATIM"
+                ));
 
                 // add specified properties into featureMember:
                 outputDatas.forEach((outputData) -> {

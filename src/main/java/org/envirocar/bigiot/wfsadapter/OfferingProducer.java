@@ -181,22 +181,29 @@ public abstract class OfferingProducer implements InitializingBean, DisposableBe
                     }
                 }
             }
-
+            
             // add Geometry OutputData to offeringDescription as specified in application.yml:
             OfferingGeometry og = wfsConfig.getOffering().getGeometry();
             String offeringGeometryName = og.getName();
             String offeringGeometrySchema = og.getSchema();
-
+            
             od.addOutputData(
                     new IOData(
                             offeringGeometryName,
                             new RDFType(offeringGeometrySchema),
                             ValueType.TEXT));
 
+            // add NominatimRefLink to osmid as OutputData
+            od.addOutputData(
+                    new IOData(
+                            "OSM-Ref",
+                            new RDFType("SCHEMA_OSM_LOOKUP_NOMINATIM"),
+                            ValueType.TEXT));
+            
             // add OutputData to offeringDescription as specified in application.yml:
             List<OutputData> offeringOutputData = wfsConfig.getOffering()
                     .getOutputData();
-
+            
             for (OutputData outputData : offeringOutputData) {
                 String outputDataName = outputData.getName();
                 String outputDataSchema = outputData.getSchema();
