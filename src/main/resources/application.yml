@@ -19,6 +19,7 @@ wfs:
     request: GetFeature
     typeName: cite:roadsegments
     outputFormat: text/xml; subtype=gml/2.1.2
+    srsName: 
     
 offering:
     local_id: roadsegments-offering

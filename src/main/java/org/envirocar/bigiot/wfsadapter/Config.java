@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2013 - 2017 the enviroCar community
+ * Copyright (C) 2013 - 2018 the enviroCar community
  *
  * This file is part of the enviroCar BIGIOT WFS Adapter.
  *
@@ -71,6 +71,7 @@ public class Config {
         private String request;
         private String typeName;
         private String outputFormat;
+        private String srsName;
 
         public String getUrl() throws WFSConfigParamMissingException {
             if (url == null
@@ -150,6 +151,17 @@ public class Config {
             this.outputFormat = URLEncoder.encode(outputFormat, "UTF-8");
         }
 
+        public String getSrsName() {
+            if (srsName == null
+                    || srsName.length() == 0) {
+                srsName = null;
+            }
+            return srsName;
+        }
+
+        public void setSrsName(String srsName) {
+            this.srsName = srsName;
+        }
     }
 
     public static class OfferingConfigurations {

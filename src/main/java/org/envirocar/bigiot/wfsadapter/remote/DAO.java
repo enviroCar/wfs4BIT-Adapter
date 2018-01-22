@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2013 - 2017 the enviroCar community
+ * Copyright (C) 2013 - 2018 the enviroCar community
  *
  * This file is part of the enviroCar BIGIOT WFS Adapter.
  *
@@ -81,6 +81,9 @@ public class DAO {
             urlString += "&request=" + wfs.getRequest();
             urlString += "&typeName=" + wfs.getTypeName();
             urlString += "&outputFormat=" + wfs.getOutputFormat();
+            if (wfs.getSrsName() != null) {
+                urlString += "&srsName=" + wfs.getSrsName();
+            }
         } catch (WFSConfigParamMissingException wcpme) {
             wcpme.printStackTrace();
         }
@@ -138,7 +141,7 @@ public class DAO {
             OfferingGeometry og = wfsConfig.getOffering().getGeometry();
             String offeringGeometryName = og.getName();
             String offeringGeometrySchema = og.getSchema();
-            
+
             OfferingFeatureIdentifier ofi = wfsConfig.getOffering().getFeatureIdentifier();
             String offeringFeatureIdentifierName = ofi.getName();
             String offeringFeatureIdentifierSchema = ofi.getSchema();
