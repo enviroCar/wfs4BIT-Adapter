@@ -13,19 +13,20 @@ bigiot:
         port: 7778
         
 wfs:
-    url: http://processing.envirocar.org:9090/geoserver/cite/ows
+    url: https://data.wien.gv.at/daten/geo
     service: WFS
-    version: 1.0.0
+    version: 1.1.0
     request: GetFeature
-    typeName: cite:roadsegments
+    typeName: ogdwien:OEFFHALTESTOGD
     outputFormat: text/xml; subtype=gml/2.1.2
+#    srsName: EPSG:4326
     
 offering:
     local_id: roadsegments-offering
     withInformation:
         name:   (Testing) / WFS-OFFERING-ROADSEGMENTS
         schema: SCHEMA_ROAD_SEGMENTS
-    route: roadsegments
+    route: bahndata
     inCity: Barcelona
     expireDate: 2018-02-28T01:23:45
     accessStreamTimeout: 2018-02-28T01:23:45
@@ -35,120 +36,20 @@ offering:
         price: 0.00
         currency: Euros
     geometry:
-        name: geom
+        name: SHAPE
         schema: http://schema.org/line
     featureIdentifier:
         name: featureID
         schema: http://schema.org/identifier
     mapNullValues: true
     outputData:
-        -   name: OSMID
-            schema: http://schema.org/identifier
-        -   name: sumGPSAccuracy
-            schema: SCHEMA_SUM_GPS_ACCURACY
-        -   name: avgGPSAccuracy
-            schema: SCHEMA_AVG_GPS_ACCURACY
-        -   name: numGPSAccuracy
+        -   name : OBJECTID
             schema: SCHEMA_AMOUNT
-        -   name: sumGPSAltitude
-            schema: http://schema.org/elevation
-        -   name: avgGPSAltitude
-            schema: http://schema.org/elevation
-        -   name: numGPSAltitude
+        -   name : HTXT
             schema: SCHEMA_AMOUNT
-        -   name: sumGPSBearing
-            schema: SCHEMA_GPS_BEARING 
-        -   name: avgGPSBearing
-            schema: SCHEMA_GPS_BEARING 
-        -   name: numGPSBearing
+        -   name : HTXTK
             schema: SCHEMA_AMOUNT
-        -   name: sumGPSHDOP
-            schema: SCHEMA_SUM_SUM_GPS_HDOP
-        -   name: avgGPSHDOP
-            schema: SCHEMA_AVG_GPS_HDOP
-        -   name: numGPSHDOP
+        -   name : HLINIEN
             schema: SCHEMA_AMOUNT
-        -   name: sumGPSPDOP
-            schema: SCHEMA_SUM_GPS_PDOP
-        -   name: avgGPSPDOP
-            schema: SCHEMA_AVG_GPS_PDOP
-        -   name: numGPSPDOP
-            schema: SCHEMA_AMOUNT
-        -   name: sumGPSSpeed
-            schema: http://auto.schema.org/speed
-        -   name: avgGPSSpeed
-            schema: http://auto.schema.org/speed
-        -   name: numGPSSpeed
-            schema: SCHEMA_AMOUNT
-        -   name: sumGPSVDOP
-            schema: SCHEMA_SUM_GPS_VDOP
-        -   name: avgGPSVDOP
-            schema: SCHEMA_AVG_GPS_VDOP
-        -   name: numGPSVDOP
-            schema: SCHEMA_AMOUNT
-        -   name : sumIntakePressure
-            schema: SCHEMA_SUM_INTAKE_PRESSURE
-        -   name : avgIntakePressure
-            schema: SCHEMA_AVG_INTAKE_PRESSURE
-        -   name : numIntakePressure
-            schema: SCHEMA_AMOUNT
-        -   name : sumIntakeTemperature
-            schema: SCHEMA_SUM_INTAKE_TEMPERATURE
-        -   name : avgIntakeTemperature
-            schema: SCHEMA_AVG_INTAKE_TEMPERATURE
-        -   name : numIntakeTemperature
-            schema: SCHEMA_AMOUNT
-        -   name : sumMAF
-            schema: SCHEMA_SUM_MAF
-        -   name : avgMAF
-            schema: SCHEMA_AVG_MAF
-        -   name : numMAF
-            schema: SCHEMA_AMOUNT
-        -   name : sumO2LambdaVoltage
-            schema: SCHEMA_SUM_SUM_O2_LAMBDA_VOLTAGE
-        -   name : avgO2LambdaVoltage
-            schema: SCHEMA_AVG_SUM_O2_LAMBDA_VOLTAGE
-        -   name : numO2LambdaVoltage
-            schema: SCHEMA_AMOUNT
-        -   name : sumO2LambdaVoltageER
-            schema: SCHEMA_SUM_SUM_O2_LAMBDA_VOLTAGE_ER
-        -   name : avgO2LambdaVoltageER
-            schema: SCHEMA_AVG_SUM_O2_LAMBDA_VOLTAGE_ER
-        -   name : numO2LambdaVoltageER
-            schema: SCHEMA_AMOUNT
-        -   name : sumRpm
-            schema: SCHEMA_SUM_RPM
-        -   name : avgRpm
-            schema: SCHEMA_AVG_RPM
-        -   name : numRpm
-            schema: SCHEMA_AMOUNT
-        -   name : sumSpeed
-            schema: http://auto.schema.org/speed
-        -   name : avgSpeed
-            schema: http://auto.schema.org/speed
-        -   name : numSpeed
-            schema: SCHEMA_AMOUNT
-        -   name : sumThrottlePosition
-            schema: SCHEMA_SUM_THROTTLE_POSITION
-        -   name : avgThrottlePosition
-            schema: SCHEMA_AVG_THROTTLE_POSITION
-        -   name : numThrottlePosition
-            schema: SCHEMA_AMOUNT
-        -   name : sumCO2
-            schema: http://auto.schema.org/emissionsCO2
-        -   name : avgCO2
-            schema: http://auto.schema.org/emissionsCO2
-        -   name : numCO2
-            schema: SCHEMA_AMOUNT
-        -   name : sumEngineLoad
-            schema: SCHEMA_SUM_ENGINE_LOAD
-        -   name : avgEngineLoad
-            schema: SCHEMA_AVG_ENGINE_LOAD
-        -   name : numEngineLoad
-            schema: SCHEMA_AMOUNT
-        -   name : sumConsumption
-            schema: http://schema.org/fuelConsumption
-        -   name : avgConsumption
-            schema: http://schema.org/fuelConsumption
-        -   name : numConsumption
+        -   name : DIVA_ID
             schema: SCHEMA_AMOUNT

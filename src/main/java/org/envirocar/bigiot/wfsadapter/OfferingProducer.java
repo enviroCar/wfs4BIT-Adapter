@@ -192,13 +192,6 @@ public abstract class OfferingProducer implements InitializingBean, DisposableBe
                             offeringGeometryName,
                             new RDFType(offeringGeometrySchema),
                             ValueType.TEXT));
-
-            // add NominatimRefLink to osmid as OutputData
-            od.addOutputData(
-                    new IOData(
-                            "OSM-Ref",
-                            new RDFType("SCHEMA_OSM_LOOKUP_NOMINATIM"),
-                            ValueType.TEXT));
             
             // add OutputData to offeringDescription as specified in application.yml:
             List<OutputData> offeringOutputData = wfsConfig.getOffering()

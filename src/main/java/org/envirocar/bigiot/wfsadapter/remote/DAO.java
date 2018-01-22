@@ -165,13 +165,6 @@ public class DAO {
                     fm.setFeatureID(new WFSProperty(offeringFeatureIdentifierName, feature.getID(), offeringFeatureIdentifierSchema));
                 }
 
-                // add NominatimRefLink to osmid as OutputData
-                fm.addProperty(new WFSProperty(
-                        "OSM-Ref",
-                        "https://nominatim.openstreetmap.org/lookup?osm_ids=W" + feature.getAttribute("OSMID"),
-                        "SCHEMA_OSM_LOOKUP_NOMINATIM"
-                ));
-
                 // add specified properties into featureMember:
                 outputDatas.forEach((outputData) -> {
                     Object attributeValue = feature.getAttribute(outputData.getName());
