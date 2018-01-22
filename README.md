@@ -18,6 +18,7 @@ ecosystem where European companies can exploit the business potential of the IoT
 |commons-logging, commons-io|Apache License Version 2.0|[https://commons.apache.org/proper/commons-bsf/license.html](https://commons.apache.org/proper/commons-bsf/license.html)|
 |geotools|GNU Lesser Public License Version 2.1|[http://docs.geotools.org/latest/userguide/welcome/license.html](http://docs.geotools.org/latest/userguide/welcome/license.html)|
 |squreup retrofit|Apache License Version 2.0|[https://github.com/square/retrofit/blob/master/LICENSE.txt](https://github.com/square/retrofit/blob/master/LICENSE.txt)|
+|Joda-Time|Apache License Version 2.0|[http://joda-time.sourceforge.net/license.html](http://joda-time.sourceforge.net/license.html)|
 
 #### wfs4BIGIoT-Adapter
 
