@@ -64,9 +64,9 @@ Specify the parameters for your Web Featire Service in [lines 15-21 of `applicat
 
 | Config Parameters|Required|Description|Example|
 |:----:|:----:|:----:|:----:|
-|**url**|YES|The entire url-encoded base URL to your WebFeatureService|[**url:** http://processing.envirocar.org:9090/geoserver/cite/ow](https://github.com/enviroCar/wfs4BIT-Adapter/blob/develop/src/main/resources/application.yml#L16)|
+|**url**|YES|The url-encoded base URL to your WebFeatureService|[**url:** http://processing.envirocar.org:9090/geoserver/cite/ow](https://github.com/enviroCar/wfs4BIT-Adapter/blob/develop/src/main/resources/application.yml#L16)|
 |**service**|YES|The service on your URL must be `wfs`. Other services are not supported yet.|[**service:** WFS](https://github.com/enviroCar/wfs4BIT-Adapter/blob/develop/src/main/resources/application.yml#L17)|
-|**version**|YES|The version of your WFS. Supported version options are: `1.0.0`,`1.1.0`, and `2.0.0`. |[**version:** 1.0.0](https://github.com/enviroCar/wfs4BIT-Adapter/blob/develop/src/main/resources/application.yml#L18)|
+|**version**|YES|The version of your WFS. Supported version options are: `1.0.0`,`1.1.0`, and `2.0.0`.|[**version:** 1.0.0](https://github.com/enviroCar/wfs4BIT-Adapter/blob/develop/src/main/resources/application.yml#L18)|
 |**request**|YES|The request to your WFS must be `GetFeature`. Other requests are not supported yet.|[**request:** GetFeature](https://github.com/enviroCar/wfs4BIT-Adapter/blob/develop/src/main/resources/application.yml#L19)|
 |**typeName**|YES|The typeName is the name of the feature type, that you want to offer in the marketplace.|[**typeName:** cite:roadsegments](https://github.com/enviroCar/wfs4BIT-Adapter/blob/develop/src/main/resources/application.yml#L20)|
 |**outputFormat**|YES|The outputFormat of your data. This WFS-Adapter supports outputFormat GML. Supported versions are 2.0 - 3.1. GML 3.2 is currently not supported. The outputFormat **_must not_** be URL-encoded.|[**outputFormat:** text/xml; subtype=gml/2.1.2](https://github.com/enviroCar/wfs4BIT-Adapter/blob/develop/src/main/resources/application.yml#L21)|
@@ -96,7 +96,7 @@ You must specify the following specifications for your WFS and your desired BIG 
 This project is implemented using the spring-boot framework. Out of the box, Spring Boot provides an executable *.jar file, that can run the entire Spring application with no fuss: no build required, no setup, no web server configuration, etc.
 
     1. Build the project with Maven: `mvn clean install`
-    2. Take the executable file `wfs4BIT-Adapter-0.1.jar` and move it to the machine, on which you want to deploy it.
+    2. Take the executable file `wfs4BIT-Adapter-0.1.jar` and move it to a application server of your choice (e.g. Apache Tomcat).
     3. Run `java -jar /path/to/file/wfs4BIT-Adapter-0.1.jar`
 
 Further reading: [https://spring.io](https://spring.io/blog/2014/03/07/deploying-spring-boot-applications)
