@@ -29,7 +29,7 @@ offering:
     route: bahndata
     expireDate: 2018-02-28T01:23:45
     accessStreamTimeout: 2018-02-28T01:23:45
-    licenseType: OPEN_DATA_LICENSE
+    licenseType: NON_COMMERCIAL_DATA_LICENSE
     price:
         pricingModel: FREE
         price: 0.00
