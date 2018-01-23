@@ -18,6 +18,7 @@
  */
 package org.envirocar.bigiot.wfsadapter;
 
+import org.envirocar.bigiot.wfsadapter.config.RemoteConfiguration;
 import org.springframework.boot.Banner;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
@@ -41,5 +42,5 @@ public class BIGIoTWFSAdapter {
                 .bannerMode(Banner.Mode.CONSOLE)
                 .run(args);
     }
-    
+
 }

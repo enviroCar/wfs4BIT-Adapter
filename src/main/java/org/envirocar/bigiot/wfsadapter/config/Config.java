@@ -21,7 +21,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package org.envirocar.bigiot.wfsadapter;
+package org.envirocar.bigiot.wfsadapter.config;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;

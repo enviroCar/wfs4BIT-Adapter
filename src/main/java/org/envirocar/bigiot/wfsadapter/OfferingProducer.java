@@ -18,6 +18,7 @@
  */
 package org.envirocar.bigiot.wfsadapter;
 
+import org.envirocar.bigiot.wfsadapter.config.Config;
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,13 +32,13 @@ import org.eclipse.bigiot.lib.model.ValueType;
 import org.eclipse.bigiot.lib.offering.RegistrableOfferingDescription;
 import org.eclipse.bigiot.lib.offering.RegistrableOfferingDescriptionChain;
 
-import org.envirocar.bigiot.wfsadapter.Config.OfferingConfigurations.OutputData;
+import org.envirocar.bigiot.wfsadapter.config.Config.OfferingConfigurations.OutputData;
 
 import java.util.List;
 import org.eclipse.bigiot.lib.model.BigIotTypes;
 import org.eclipse.bigiot.lib.model.Price.Euros;
 import org.eclipse.bigiot.lib.model.Price.USDollars;
-import org.envirocar.bigiot.wfsadapter.Config.OfferingConfigurations.OfferingGeometry;
+import org.envirocar.bigiot.wfsadapter.config.Config.OfferingConfigurations.OfferingGeometry;
 import org.envirocar.bigiot.wfsadapter.exception.OfferingConfigParamMissingException;
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;

@@ -19,9 +19,11 @@
 package org.envirocar.bigiot.wfsadapter;
 
 import java.io.IOException;
+import java.util.logging.Level;
 
 import org.eclipse.bigiot.lib.Provider;
 import org.eclipse.bigiot.lib.ProviderSpark;
+import org.geotools.coverage.processing.operation.Log;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -33,7 +35,7 @@ import org.springframework.context.annotation.Configuration;
  */
 @Configuration
 public class AdapterConfiguration {
-
+    
     @Bean
     public Provider provideProviderSpark(
             @Value("${bigiot.provider.id}") String providerId,
@@ -41,6 +43,7 @@ public class AdapterConfiguration {
             @Value("${bigiot.provider.address}") String localDomain,
             @Value("${bigiot.provider.port}") int port,
             @Value("${bigiot.provider.secret}") String secret) throws IOException {
+        
         System.out.println(providerId + " : " + secret);
         Provider provider = new ProviderSpark(providerId, marketplaceUri, localDomain, port);
         provider.authenticate(secret);

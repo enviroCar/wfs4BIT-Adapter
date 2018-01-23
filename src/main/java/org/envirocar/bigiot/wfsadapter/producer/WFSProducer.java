@@ -29,9 +29,9 @@ import org.eclipse.bigiot.lib.offering.RegistrableOfferingDescription;
 
 import org.envirocar.bigiot.wfsadapter.AbstractRequestHandler;
 import org.envirocar.bigiot.wfsadapter.OfferingProducer;
-import org.envirocar.bigiot.wfsadapter.Config;
-import org.envirocar.bigiot.wfsadapter.Config.OfferingConfigurations.OutputData;
-import org.envirocar.bigiot.wfsadapter.Config.OfferingConfigurations.OfferingGeometry;
+import org.envirocar.bigiot.wfsadapter.config.Config;
+import org.envirocar.bigiot.wfsadapter.config.Config.OfferingConfigurations.OutputData;
+import org.envirocar.bigiot.wfsadapter.config.Config.OfferingConfigurations.OfferingGeometry;
 
 import java.util.List;
 import org.eclipse.bigiot.lib.model.BigIotTypes;

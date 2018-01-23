@@ -24,9 +24,9 @@ import org.springframework.stereotype.Component;
 import org.envirocar.bigiot.wfsadapter.model.WFSFeatureCollection;
 import org.envirocar.bigiot.wfsadapter.model.WFSFeatureMember;
 import org.envirocar.bigiot.wfsadapter.model.WFSProperty;
-import org.envirocar.bigiot.wfsadapter.Config;
-import org.envirocar.bigiot.wfsadapter.Config.OfferingConfigurations.OutputData;
-import org.envirocar.bigiot.wfsadapter.Config.OfferingConfigurations.OfferingGeometry;
+import org.envirocar.bigiot.wfsadapter.config.Config;
+import org.envirocar.bigiot.wfsadapter.config.Config.OfferingConfigurations.OutputData;
+import org.envirocar.bigiot.wfsadapter.config.Config.OfferingConfigurations.OfferingGeometry;
 import org.envirocar.bigiot.wfsadapter.filter.WFSFilter;
 
 import java.util.ArrayList;
@@ -47,8 +47,8 @@ import org.slf4j.LoggerFactory;
 import org.slf4j.Logger;
 
 import javax.xml.parsers.ParserConfigurationException;
-import org.envirocar.bigiot.wfsadapter.Config.OfferingConfigurations.OfferingFeatureIdentifier;
-import org.envirocar.bigiot.wfsadapter.Config.WFSConfigurations;
+import org.envirocar.bigiot.wfsadapter.config.Config.OfferingConfigurations.OfferingFeatureIdentifier;
+import org.envirocar.bigiot.wfsadapter.config.Config.WFSConfigurations;
 import org.envirocar.bigiot.wfsadapter.exception.WFSConfigParamMissingException;
 
 import org.xml.sax.SAXException;

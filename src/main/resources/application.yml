@@ -1,7 +1,7 @@
 spring:
     application:
         name: enviroCar - BIGIOT WFS Adapter
-
+    
 ec4bit:
     contact: envirocar@52north.org
     
@@ -19,7 +19,7 @@ wfs:
     request: GetFeature
     typeName: cite:roadsegments
     outputFormat: text/xml; subtype=gml/2.1.2
-    srsName: 
+#    srsName:
     
 offering:
     local_id: roadsegments-offering
