@@ -71,6 +71,7 @@ public class Config {
         private String request;
         private String typeName;
         private String outputFormat;
+        private String srsName;
 
         public String getUrl() throws WFSConfigParamMissingException {
             if (url == null
@@ -148,6 +149,18 @@ public class Config {
 
         public void setOutputFormat(String outputFormat) throws UnsupportedEncodingException {
             this.outputFormat = URLEncoder.encode(outputFormat, "UTF-8");
+        }
+
+        public String getSrsName() {
+            if (srsName == null
+                    || srsName.length() == 0) {
+                srsName = null;
+            }
+            return srsName;
+        }
+
+        public void setSrsName(String srsName) {
+            this.srsName = srsName;
         }
 
     }

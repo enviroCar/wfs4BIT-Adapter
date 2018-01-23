@@ -84,6 +84,9 @@ public class DAO {
             urlString += "&request=" + wfs.getRequest();
             urlString += "&typeName=" + wfs.getTypeName();
             urlString += "&outputFormat=" + wfs.getOutputFormat();
+            if (wfs.getSrsName() != null) {
+                urlString += "&srsName=" + wfs.getSrsName();
+            }
         } catch (WFSConfigParamMissingException wcpme) {
             wcpme.printStackTrace();
         }
