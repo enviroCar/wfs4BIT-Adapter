@@ -19,11 +19,9 @@
 package org.envirocar.bigiot.wfsadapter;
 
 import java.io.IOException;
-import java.util.logging.Level;
 
 import org.eclipse.bigiot.lib.Provider;
 import org.eclipse.bigiot.lib.ProviderSpark;
-import org.geotools.coverage.processing.operation.Log;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
