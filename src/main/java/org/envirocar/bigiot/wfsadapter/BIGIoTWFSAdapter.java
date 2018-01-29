@@ -36,11 +36,11 @@ import org.springframework.context.annotation.Import;
 public class BIGIoTWFSAdapter {
 
     public static void main(String[] args) {
-        new SpringApplicationBuilder(BIGIoTWFSAdapter.class)
+        SpringApplicationBuilder builder = new SpringApplicationBuilder(BIGIoTWFSAdapter.class)
                 .properties("spring.config.name:application,secret")
                 .web(true)
-                .bannerMode(Banner.Mode.CONSOLE)
-                .run(args);
+                .bannerMode(Banner.Mode.CONSOLE);
+        builder.run(args);
     }
 
 }

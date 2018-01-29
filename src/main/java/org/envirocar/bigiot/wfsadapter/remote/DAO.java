@@ -110,7 +110,9 @@ public class DAO {
         if (filter.hasPropertyNameFilter()) {
             propertyNameParam = filter.getPropertyNameFilter().string();
             urlString += "&propertyName=" + propertyNameParam;
-            urlString += "," + wfsConfig.getOffering().getGeometry().getName();
+            if (wfsConfig.getOffering().getGeometry() != null) {
+                urlString += "," + wfsConfig.getOffering().getGeometry().getName();
+            }
         }
         try {
             URL url = new URL(urlString);
@@ -168,7 +170,7 @@ public class DAO {
                 // add specified properties into featureMember:
                 outputDatas.forEach((outputData) -> {
                     Object attributeValue = feature.getAttribute(outputData.getName());
-                    if (!mapNullValues || (mapNullValues && attributeValue != null)) {
+                    if (mapNullValues || (!mapNullValues && attributeValue != null)) {
                         fm.addProperty(new WFSProperty(outputData.getName(),
                                 feature.getAttribute(outputData.getName()),
                                 outputData.getSchema()));

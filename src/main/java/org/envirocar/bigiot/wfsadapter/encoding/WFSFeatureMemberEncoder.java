@@ -34,26 +34,30 @@ import org.envirocar.bigiot.wfsadapter.model.WFSProperty;
  * @author Maurin Radtke <m.radtke@52north.org>
  */
 public class WFSFeatureMemberEncoder extends BaseJSONEncoder<WFSFeatureMember> {
-    
+
     @Override
     public void serialize(WFSFeatureMember feature, JsonGenerator gen, SerializerProvider serializers) throws IOException, JsonProcessingException {
 
         gen.writeStartObject();
-        
-        gen.writeObjectField(
-                feature.getGeom().getPropertyName(),
-                feature.getGeom().getPropertyValue());
-        
-        gen.writeObjectField(
-                feature.getFeatureID().getPropertyName(),
-                feature.getFeatureID().getPropertyValue());
-        
+
+        if (feature.getGeom() != null) {
+            gen.writeObjectField(
+                    feature.getGeom().getPropertyName(),
+                    feature.getGeom().getPropertyValue());
+        }
+
+        if (feature.getFeatureID() != null) {
+            gen.writeObjectField(
+                    feature.getFeatureID().getPropertyName(),
+                    feature.getFeatureID().getPropertyValue());
+        }
+
         List<WFSProperty> properties = feature.getProperties();
-        
+
         for (WFSProperty p : properties) {
             gen.writeObjectField(p.getPropertyName(), p.getPropertyValue());
         }
-        
+
         gen.writeEndObject();
     }
 

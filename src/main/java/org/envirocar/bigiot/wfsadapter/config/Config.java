@@ -264,7 +264,7 @@ public class Config {
         }
 
         public void setMapNullValues(String mapNullValues) {
-            this.mapNullValues = !mapNullValues.equals("false");
+            this.mapNullValues = mapNullValues.equals("true");
         }
 
         public List<OutputData> getOutputData() {
