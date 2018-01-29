@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>org.envirocar.bigiot</groupId>
+    <artifactId>wfs4BIT-Adapter</artifactId>
+    <version>0.1</version>
+    <packaging>jar</packaging>
+    
+    <name>wfs4BIT-Adapter</name>
+    <description>Generic WFS Adapter for the BIG IoT marketplace</description>
+    
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        
+        <!-- plugins -->
+        <maven.license.plugin.version>1.10.b1</maven.license.plugin.version>
+        <maven.replacer.version>1.5.3</maven.replacer.version>
+        <maven.properties.version>1.0.0</maven.properties.version>
+        
+        <maven.compiler.version>3.7.0</maven.compiler.version>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        
+        <spring.boot.mvn.version>1.5.8.BUILD-SNAPSHOT</spring.boot.mvn.version>
+        <spring.boot.version>1.5.8.BUILD-SNAPSHOT</spring.boot.version>
+        
+        <joda.version>2.9.9</joda.version>
+        <bigiot.version>0.9.9</bigiot.version>
+        <retrofit.version>2.3.0</retrofit.version>
+        <slf4j.version>1.7.25</slf4j.version>
+        <commons.logging.version>1.2</commons.logging.version>
+        <geotools.version>19-SNAPSHOT</geotools.version>
+    </properties>
+    
+    <dependencies>
+        <!-- Big IoT Libraries -->
+        <dependency>
+            <groupId>org.eclipse.bigiot.lib</groupId>
+            <artifactId>bigiot-lib-core</artifactId>
+            <version>${bigiot.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.eclipse.bigiot.lib</groupId>
+            <artifactId>bigiot-lib-advanced</artifactId>
+            <version>${bigiot.version}</version>
+        </dependency>
+        <!--        <dependency>
+            <groupId>org.eclipse.bigiot.lib</groupId>
+            <artifactId>bigiot-lib-swagger</artifactId>
+            <version>${bigiot.version}</version>
+        </dependency>-->
+        <dependency>
+            <groupId>org.eclipse.bigiot.lib</groupId>
+            <artifactId>bigiot-lib-embeddedspark</artifactId>
+            <version>${bigiot.version}</version>
+        </dependency>
+        
+        <!-- Spring dependencies -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+            <version>${spring.boot.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <version>${spring.boot.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${slf4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-logging</groupId>
+            <artifactId>commons-logging</artifactId>
+            <version>${commons.logging.version}</version>
+        </dependency>
+        
+        <!-- geotools -->
+        <dependency>
+            <groupId>org.geotools</groupId>
+            <artifactId>gt-api</artifactId>
+            <version>${geotools.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.geotools</groupId>
+            <artifactId>gt-referencing</artifactId>
+            <version>${geotools.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.geotools</groupId>
+            <artifactId>gt-coverage</artifactId>
+            <version>${geotools.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.geotools</groupId>
+            <artifactId>gt-main</artifactId>
+            <version>${geotools.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.geotools.xsd</groupId>
+            <artifactId>gt-xsd-core</artifactId>
+            <version>${geotools.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.geotools</groupId>
+            <artifactId>gt-epsg-hsql</artifactId>
+            <version>${geotools.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.geotools</groupId>
+            <artifactId>gt-sample-data</artifactId>
+            <version>${geotools.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.geotools.schemas</groupId>
+            <artifactId>gml-3.1</artifactId>
+            <version>3.1.1-4</version>
+        </dependency>
+        <dependency>
+            <groupId>org.geotools.schemas</groupId>
+            <artifactId>gml-3.2</artifactId>
+            <version>3.2.1-1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.geotools.xsd</groupId>
+            <artifactId>gt-xsd-gml3</artifactId>
+            <version>18.1</version>
+            <type>jar</type>
+        </dependency>
+        
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>2.6</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>com.squareup.retrofit2</groupId>
+            <artifactId>retrofit</artifactId>
+            <version>2.3.0</version>
+            <type>jar</type>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <executable>true</executable>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>com.mycila.maven-license-plugin</groupId>
+                <artifactId>maven-license-plugin</artifactId>
+                <inherited>false</inherited>
+                <configuration>
+                    <aggregate>true</aggregate>
+                    <header>etc/LICENSE_HEADER</header>
+                    <includes>
+                        <include>**/*.java</include>
+                    </includes>
+                    <strictCheck>true</strictCheck>
+                    <properties>
+                        <author>The enviroCar project</author>
+                        <year>${project.inceptionYear}</year>
+                    </properties>
+                    <mapping>
+                        <java>SLASHSTAR_STYLE</java>
+                    </mapping>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>process-resources</phase>
+                        <goals>
+                            <goal>format</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>${maven.compiler.version}</version>
+                    <configuration>
+                        <source>${maven.compiler.source}</source>
+                        <target>${maven.compiler.target}</target>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-maven-plugin</artifactId>
+                    <configuration>
+                        <executable>true</executable>
+                    </configuration>
+                    <version>${spring.boot.mvn.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>com.mycila.maven-license-plugin</groupId>
+                    <artifactId>maven-license-plugin</artifactId>
+                    <version>${maven.license.plugin.version}</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+
+    <repositories>
+        <repository>
+            <id>BIG IoT Repository</id>
+            <url>https://nexus.big-iot.org/content/repositories/releases/</url>
+        </repository>
+        <repository>
+            <id>spring-snapshots</id>
+            <name>Spring Snapshots</name>
+            <url>https://repo.spring.io/snapshot</url>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>spring-milestones</id>
+            <name>Spring Milestones</name>
+            <url>https://repo.spring.io/milestone</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>osgeo</id>
+            <name>Open Source Geospatial Foundation Repository</name>
+            <url>http://download.osgeo.org/webdav/geotools/</url>
+        </repository>
+        <repository>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+            <id>boundless</id>
+            <name>Boundless Maven Repository</name>
+            <url>http://repo.boundlessgeo.com/main</url>
+        </repository>
+    </repositories>
+    <pluginRepositories>
+        <pluginRepository>
+            <id>spring-snapshots</id>
+            <name>Spring Snapshots</name>
+            <url>https://repo.spring.io/snapshot</url>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </pluginRepository>
+        <pluginRepository>
+            <id>spring-milestones</id>
+            <name>Spring Milestones</name>
+            <url>https://repo.spring.io/milestone</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </pluginRepository>
+    </pluginRepositories>
+    
+</project>

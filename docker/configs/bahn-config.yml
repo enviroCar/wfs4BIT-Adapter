@@ -1,0 +1,54 @@
+spring:
+    application:
+        name: enviroCar - BIGIOT WFS Adapter
+
+ec4bit:
+    contact: envirocar@52north.org
+    
+bigiot:
+    marketplace:
+        url:  https://market.big-iot.org
+    provider:
+        address: localhost
+        port: 7776
+        
+wfs:
+    url: https://data.wien.gv.at/daten/geo
+    service: WFS
+    version: 1.1.0
+    request: GetFeature
+    typeName: ogdwien:OEFFHALTESTOGD
+    outputFormat: text/xml; subtype=gml/2.1.2
+    srsName: EPSG:4326
+    
+offering:
+    local_id: vienna-busstops-offering
+    withInformation:
+        name:   (Testing) / WFS-VIENNA-BUSSTOPS-OFFERING
+        schema: SCHEMA_BUS_STOPS_VIENNA
+    route: busstops
+    expireDate: 2018-02-28T01:23:45
+    accessStreamTimeout: 2018-02-28T01:23:45
+    licenseType: NON_COMMERCIAL_DATA_LICENSE
+    price:
+        pricingModel: FREE
+        price: 0.00
+        currency: Euros
+    geometry:
+        name: SHAPE
+        schema: http://schema.org/point
+    featureIdentifier:
+        name: featureID
+        schema: http://schema.org/identifier
+    mapNullValues: true
+    outputData:
+        -   name : OBJECTID
+            schema: SCHEMA_AMOUNT
+        -   name : HTXT
+            schema: SCHEMA_AMOUNT
+        -   name : HTXTK
+            schema: SCHEMA_AMOUNT
+        -   name : HLINIEN
+            schema: SCHEMA_AMOUNT
+        -   name : DIVA_ID
+            schema: SCHEMA_AMOUNT

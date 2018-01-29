@@ -1,0 +1,12 @@
+version: '3'
+services:
+    bahn-wfs:
+        image: envirocar/wfs4bit
+        ports:
+            - 7776:7776
+        volumes:
+            - ./configs/bahn-config.yml:/config/application.yml
+        environment:
+            - BIOT_PROVIDER_ID=()
+            - BIOT_PROVIDER_SECRET=()
+    
