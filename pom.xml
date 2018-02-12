@@ -25,7 +25,7 @@
         <spring.boot.version>1.5.8.BUILD-SNAPSHOT</spring.boot.version>
         
         <joda.version>2.9.9</joda.version>
-        <bigiot.version>0.9.9</bigiot.version>
+        <bigiot.version>0.10.M1</bigiot.version>
         <retrofit.version>2.3.0</retrofit.version>
         <slf4j.version>1.7.25</slf4j.version>
         <commons.logging.version>1.2</commons.logging.version>

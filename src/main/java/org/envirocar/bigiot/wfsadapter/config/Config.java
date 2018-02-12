@@ -167,7 +167,10 @@ public class Config {
     public static class OfferingConfigurations {
 
         private String local_id;
-        private OfferingInformation withInformation;
+        private String name;
+        private String category;
+        private TimePeriod timePeriod;
+        private InRegion inRegion;
         private String offeringOutputs;
         private String route;
         private String inCity;
@@ -243,14 +246,38 @@ public class Config {
             this.price = price;
         }
 
-        public OfferingInformation getWithInformation() {
-            return withInformation;
+        public String getName() {
+            return name;
         }
 
-        public void setWithInformation(OfferingInformation withInformation) {
-            this.withInformation = withInformation;
+        public void setName(String name) {
+            this.name = name;
         }
 
+        public String getCategory() {
+            return category;
+        }
+
+        public void setCategory(String category) {
+            this.category = category;
+        }
+
+        public TimePeriod getTimePeriod() {
+            return timePeriod;
+        }
+
+        public void setTimePeriod(TimePeriod timePeriod) {
+            this.timePeriod = timePeriod;
+        }
+
+        public InRegion getInRegion() {
+            return inRegion;
+        }
+
+        public void setInRegion(InRegion inRegion) {
+            this.inRegion = inRegion;
+        }
+        
         public String getOfferingOutputs() {
             return offeringOutputs;
         }
@@ -322,33 +349,69 @@ public class Config {
             }
 
         }
+        
+        public static class InRegion {
 
-        public static class OfferingInformation {
+            private Double x1;
+            private Double y1;
+            private Double x2;
+            private Double y2;
 
-            private String name;
-            private String schema;
-
-            public String getName() throws OfferingConfigParamMissingException {
-                if (name == null) {
-                    throw new OfferingConfigParamMissingException("Missing required offering parameter in application.yml: withInformation.name");
-                }
-                return name;
+            public Double getX1() {
+                return x1;
             }
 
-            public void setName(String name) {
-                this.name = name;
+            public void setX1(Double x1) {
+                this.x1 = x1;
             }
 
-            public String getSchema() throws OfferingConfigParamMissingException {
-                if (schema == null) {
-                    throw new OfferingConfigParamMissingException("Missing required offering parameter in application.yml: withInformation.schema");
-                }
-                return schema;
+            public Double getY1() {
+                return y1;
             }
 
-            public void setSchema(String schema) {
-                this.schema = schema;
+            public void setY1(Double y1) {
+                this.y1 = y1;
             }
+
+            public Double getX2() {
+                return x2;
+            }
+
+            public void setX2(Double x2) {
+                this.x2 = x2;
+            }
+
+            public Double getY2() {
+                return y2;
+            }
+
+            public void setY2(Double y2) {
+                this.y2 = y2;
+            }
+            
+        }
+
+        public static class TimePeriod {
+
+            private String startDate;
+            private String endDate;
+
+            public String getStartDate() {
+                return startDate;
+            }
+
+            public void setStartDate(String startDate) {
+                this.startDate = startDate;
+            }
+
+            public String getEndDate() {
+                return endDate;
+            }
+
+            public void setEndDate(String endDate) {
+                this.endDate = endDate;
+            }
+            
         }
 
         public static class OutputData {

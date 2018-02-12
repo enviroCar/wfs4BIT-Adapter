@@ -36,6 +36,8 @@ import org.envirocar.bigiot.wfsadapter.config.Config.OfferingConfigurations.Outp
 
 import java.util.List;
 import org.eclipse.bigiot.lib.model.BigIotTypes;
+import org.eclipse.bigiot.lib.model.BoundingBox;
+import org.eclipse.bigiot.lib.model.Location;
 import org.eclipse.bigiot.lib.model.Price.Euros;
 import org.eclipse.bigiot.lib.model.Price.USDollars;
 import org.envirocar.bigiot.wfsadapter.config.Config.OfferingConfigurations.OfferingGeometry;
@@ -83,16 +85,17 @@ public abstract class OfferingProducer implements InitializingBean, DisposableBe
         try {
             // add required offering parameters as specified in application.yml:
             String local_id = wfsConfig.getOffering().getLocal_id();
-            String informationName = wfsConfig.getOffering().getWithInformation().getName();
-            String informationSchema = wfsConfig.getOffering().getWithInformation().getSchema();
+            String name = wfsConfig.getOffering().getName();
+            String category = wfsConfig.getOffering().getCategory();
 
             // register offeringDescription:
             RegistrableOfferingDescriptionChain od = provider.createOfferingDescription(local_id)
+                    .withName(name)
+                    .withCategory(category)
                     .addInputData(MAX_FEATURES_FILTER, new RDFType(SCHEMA_MAX_FEATURES_FILTER), ValueType.TEXT)
                     .addInputData(CUSTOM_WFS_FILTER, new RDFType(SCHEMA_CUSTOM_WFS_FILTER), ValueType.TEXT)
                     .addInputData(SORT_BY_FILTER, new RDFType(SCHEMA_SORT_BY_FILTER), ValueType.TEXT)
                     .addInputData(BOUNDING_BOX_FILTER, new RDFType(SCHEMA_BOUNDING_BOX_FILTER), ValueType.TEXT)
-                    .withInformation(new Information(informationName, new RDFType(informationSchema)))
                     .withProtocol(BigIotTypes.EndpointType.HTTP_GET)
                     .withAccessRequestHandler(getRequestHandler());
 
@@ -100,6 +103,18 @@ public abstract class OfferingProducer implements InitializingBean, DisposableBe
             if (wfsConfig.getOffering().getRoute() != null
                     && !wfsConfig.getOffering().getRoute().isEmpty()) {
                 od.withRoute(wfsConfig.getOffering().getRoute());
+            }
+            if (wfsConfig.getOffering().getTimePeriod() != null) {
+                DateTimeFormatter TEMPORAL_TIME_PATTERN = DateTimeFormat.forPattern("yyyy-MM-dd'T'HH:mm:ss");
+                DateTime startDate = TEMPORAL_TIME_PATTERN.parseDateTime(wfsConfig.getOffering().getTimePeriod().getStartDate());
+                DateTime endDate = TEMPORAL_TIME_PATTERN.parseDateTime(wfsConfig.getOffering().getTimePeriod().getEndDate());
+                od.withTimePeriod(startDate, endDate);
+            }
+            if (wfsConfig.getOffering().getInRegion() != null) {
+                Config.OfferingConfigurations.InRegion ir = wfsConfig.getOffering().getInRegion();
+                od.inRegion(BoundingBox.create(
+                        Location.create(ir.getX1(), ir.getY1()), Location.create(ir.getX2(), ir.getY2())
+                ));
             }
             if (wfsConfig.getOffering().getInCity() != null
                     && !wfsConfig.getOffering().getInCity().isEmpty()) {
