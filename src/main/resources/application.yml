@@ -10,153 +10,60 @@ bigiot:
         url:  https://market.big-iot.org
     provider:
         address: localhost
-        port: 7776
+        port: 7775
         
 wfs:
-    url: http://processing.envirocar.org:9090/geoserver/cite/ows
+    url: http://geodienste.hamburg.de/HH_WFS_Verkehr_opendata
     service: WFS
-    version: 1.0.0
+    version: 1.1.0
     request: GetFeature
-    typeName: cite:roadsegments
+    typeName: app:parkandride_os
     outputFormat: text/xml; subtype=gml/2.1.2
     
 offering:
-    local_id: roadsegments-offering
-    name:   WFS-OFFERING-ROADSEGMENTS
-    category: urn:proposed:roadsegments
+    local_id: hamburg_bahnstation_parking_offering
+    name:   hamburg_bahnstations_parking
+    category: urn:proposed:bahnstation
     timePeriod:
-        startDate: 2013-01-01T01:23:45
+        startDate: 2018-01-01T01:23:45
         endDate: 2018-02-28T01:23:45
     inRegion:
-        x1: 47.152586
-        y1: 3.639256
-        x2: 55.097413
-        y2: 16.603124
-#    inCity: Hamburg
+        x1: 53.395600
+        y1: 9.653137
+        x2: 53.762501
+        y2: 10.356262
+    inCity: Hamburg
     inCountry: Germany
-    route: roadsegments
     expireDate: 2018-02-28T01:23:45
-#    accessStreamTimeout: 2018-02-28T01:23:45
-    licenseType: OPEN_DATA_LICENSE
+    accessStreamTimeout: 2018-02-28T01:23:45
+    licenseType: NON_COMMERCIAL_DATA_LICENSE
     price:
         pricingModel: FREE
         price: 0.00
         currency: Euros
     geometry:
-        name: geom
-        schema: poposed:line
+        name: position
+        schema: proposed:Point
     featureIdentifier:
         name: featureID
         schema: proposed:id
     mapNullValues: true
     outputData:
-        -   name: OSMID
-            schema: proposed:id
-        -   name: sumGPSAccuracy
-            schema: http://schema.big-iot.org/mobility/gpsAccuracy
-        -   name: avgGPSAccuracy
-            schema: http://schema.big-iot.org/mobility/gpsAccuracy
-        -   name: numGPSAccuracy
-            schema: http://schema.big-iot.org/mobility/gpsAccuracy
-        -   name: sumGPSAltitude
-            schema: http://schema.big-iot.org/mobility/gpsAltitude
-        -   name: avgGPSAltitude
-            schema: http://schema.big-iot.org/mobility/gpsAltitude
-        -   name: numGPSAltitude
-            schema: http://schema.big-iot.org/mobility/gpsAltitude
-        -   name: sumGPSBearing
-            schema: http://schema.big-iot.org/mobility/gpsBearing 
-        -   name: avgGPSBearing
-            schema: http://schema.big-iot.org/mobility/gpsBearing 
-        -   name: numGPSBearing
-            schema: http://schema.big-iot.org/mobility/gpsBearing
-        -   name: sumGPSHDOP
-            schema: http://schema.big-iot.org/mobility/gpsHDOP
-        -   name: avgGPSHDOP
-            schema: http://schema.big-iot.org/mobility/gpsHDOP
-        -   name: numGPSHDOP
-            schema: http://schema.big-iot.org/mobility/gpsHDOP
-        -   name: sumGPSPDOP
-            schema: http://schema.big-iot.org/mobility/gpsPDOP
-        -   name: avgGPSPDOP
-            schema: http://schema.big-iot.org/mobility/gpsPDOP
-        -   name: numGPSPDOP
-            schema: http://schema.big-iot.org/mobility/gpsPDOP
-        -   name: sumGPSSpeed
-            schema: http://schema.big-iot.org/mobility/gpsSpeed
-        -   name: avgGPSSpeed
-            schema: http://schema.big-iot.org/mobility/gpsSpeed
-        -   name: numGPSSpeed
-            schema: http://schema.big-iot.org/mobility/gpsSpeed
-        -   name: sumGPSVDOP
-            schema: http://schema.big-iot.org/mobility/gpsVDOP
-        -   name: avgGPSVDOP
-            schema: http://schema.big-iot.org/mobility/gpsVDOP
-        -   name: numGPSVDOP
-            schema: http://schema.big-iot.org/mobility/gpsVDOP
-        -   name : sumIntakePressure
-            schema: http://schema.big-iot.org/mobility/intakeManifoldAbsolutePressure
-        -   name : avgIntakePressure
-            schema: http://schema.big-iot.org/mobility/intakeManifoldAbsolutePressure
-        -   name : numIntakePressure
-            schema: http://schema.big-iot.org/mobility/intakeManifoldAbsolutePressure
-        -   name : sumIntakeTemperature
-            schema: http://schema.big-iot.org/mobility/intakeAirTemperature
-        -   name : avgIntakeTemperature
-            schema: http://schema.big-iot.org/mobility/intakeAirTemperature
-        -   name : numIntakeTemperature
-            schema: http://schema.big-iot.org/mobility/intakeAirTemperature
-        -   name : sumMAF
-            schema: http://schema.big-iot.org/mobility/massAirFlow
-        -   name : avgMAF
-            schema: http://schema.big-iot.org/mobility/massAirFlow
-        -   name : numMAF
-            schema: http://schema.big-iot.org/mobility/massAirFlow
-        -   name : sumO2LambdaVoltage
-            schema: http://schema.big-iot.org/mobility/o2LambdaVoltage
-        -   name : avgO2LambdaVoltage
-            schema: http://schema.big-iot.org/mobility/o2LambdaVoltage
-        -   name : numO2LambdaVoltage
-            schema: http://schema.big-iot.org/mobility/o2LambdaVoltage
-        -   name : sumO2LambdaVoltageER
-            schema: http://schema.big-iot.org/mobility/o2LambdaVoltageER
-        -   name : avgO2LambdaVoltageER
-            schema: http://schema.big-iot.org/mobility/o2LambdaVoltageER
-        -   name : numO2LambdaVoltageER
-            schema: http://schema.big-iot.org/mobility/o2LambdaVoltageER
-        -   name : sumRpm
-            schema: http://schema.big-iot.org/mobility/engineRevolutionsPerMinute
-        -   name : avgRpm
-            schema: http://schema.big-iot.org/mobility/engineRevolutionsPerMinute
-        -   name : numRpm
-            schema: http://schema.big-iot.org/mobility/engineRevolutionsPerMinute
-        -   name : sumSpeed
-            schema: http://schema.big-iot.org/mobility/measuredSpeed
-        -   name : avgSpeed
-            schema: http://schema.big-iot.org/mobility/measuredSpeed
-        -   name : numSpeed
-            schema: http://schema.big-iot.org/mobility/measuredSpeed
-        -   name : sumThrottlePosition
-            schema: http://schema.big-iot.org/mobility/throttlePosition
-        -   name : avgThrottlePosition
-            schema: http://schema.big-iot.org/mobility/throttlePosition
-        -   name : numThrottlePosition
-            schema: http://schema.big-iot.org/mobility/throttlePosition
-        -   name : sumCO2
-            schema: http://schema.big-iot.org/mobility/emissionsCO2
-        -   name : avgCO2
-            schema: http://schema.big-iot.org/mobility/emissionsCO2
-        -   name : numCO2
-            schema: http://schema.big-iot.org/mobility/emissionsCO2
-        -   name : sumEngineLoad
-            schema: http://schema.big-iot.org/mobility/calculatedEngineLoad
-        -   name : avgEngineLoad
-            schema: http://schema.big-iot.org/mobility/calculatedEngineLoad
-        -   name : numEngineLoad
-            schema: http://schema.big-iot.org/mobility/calculatedEngineLoad
-        -   name : sumConsumption
-            schema: http://schema.big-iot.org/mobility/fuelConsumption
-        -   name : avgConsumption
-            schema: http://schema.big-iot.org/mobility/fuelConsumption
-        -   name : numConsumption
-            schema: http://schema.big-iot.org/mobility/fuelConsumption
+        -   name : bahnstation
+            schema: proposed:bahnstation
+        -   name : art
+            schema: proposed:type
+        -   name : einfahrt
+            schema: proposed:entrance
+        -   name : allgemeinest_gesamt
+            schema: proposed:total_general_parking_slots
+        -   name : entgeltpflichtig
+            schema: proposed:against_payment
+        -   name : preise
+            schema: proposed:price
+        -   name : stellplaetze_gesamt
+            schema: proposed:total_parking_slots
+        -   name : pur
+            schema: proposed:pure
+        -   name : datenherkunft
+            schema: proposed:data_origin
