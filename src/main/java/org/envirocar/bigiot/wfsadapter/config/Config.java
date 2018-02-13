@@ -174,6 +174,7 @@ public class Config {
         private String offeringOutputs;
         private String route;
         private String inCity;
+        private String inCountry;
         private String expireDate;
         private String accessStreamTimeout;
         private String licenseType;
@@ -204,6 +205,14 @@ public class Config {
 
         public void setInCity(String inCity) {
             this.inCity = inCity;
+        }
+
+        public String getInCountry() {
+            return inCountry;
+        }
+
+        public void setInCountry(String inCountry) {
+            this.inCountry = inCountry;
         }
 
         public String getRoute() {

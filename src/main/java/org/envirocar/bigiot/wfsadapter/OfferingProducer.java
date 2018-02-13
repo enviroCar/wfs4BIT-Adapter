@@ -120,6 +120,10 @@ public abstract class OfferingProducer implements InitializingBean, DisposableBe
                     && !wfsConfig.getOffering().getInCity().isEmpty()) {
                 od.inCity(wfsConfig.getOffering().getInCity());
             }
+            if (wfsConfig.getOffering().getInCountry()!= null
+                    && !wfsConfig.getOffering().getInCountry().isEmpty()) {
+                od.inRegion(wfsConfig.getOffering().getInCountry());
+            }
             if (wfsConfig.getOffering().getExpireDate() != null
                     && !wfsConfig.getOffering().getExpireDate().isEmpty()) {
                 DateTimeFormatter TEMPORAL_TIME_PATTERN = DateTimeFormat.forPattern("yyyy-MM-dd'T'HH:mm:ss");

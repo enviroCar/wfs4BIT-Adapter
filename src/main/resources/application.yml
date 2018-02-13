@@ -23,16 +23,17 @@ wfs:
 offering:
     local_id: roadsegments-offering
     name:   WFS-OFFERING-ROADSEGMENTS
-    category: SCHEMA_ROAD_SEGMENTS
+    category: urn:proposed:roadsegments
     timePeriod:
         startDate: 2013-01-01T01:23:45
         endDate: 2018-02-28T01:23:45
     inRegion:
-        x1: -70
-        y1: -180
-        x2: 90
-        y2: 180
+        x1: 47.152586
+        y1: 3.639256
+        x2: 55.097413
+        y2: 16.603124
 #    inCity: Hamburg
+    inCountry: Germany
     route: roadsegments
     expireDate: 2018-02-28T01:23:45
 #    accessStreamTimeout: 2018-02-28T01:23:45
@@ -43,119 +44,119 @@ offering:
         currency: Euros
     geometry:
         name: geom
-        schema: http://schema.org/line
+        schema: poposed:line
     featureIdentifier:
         name: featureID
-        schema: http://schema.org/identifier
+        schema: proposed:id
     mapNullValues: true
     outputData:
         -   name: OSMID
-            schema: http://schema.org/identifier
+            schema: proposed:id
         -   name: sumGPSAccuracy
-            schema: SCHEMA_SUM_GPS_ACCURACY
+            schema: http://schema.big-iot.org/mobility/gpsAccuracy
         -   name: avgGPSAccuracy
-            schema: SCHEMA_AVG_GPS_ACCURACY
+            schema: http://schema.big-iot.org/mobility/gpsAccuracy
         -   name: numGPSAccuracy
-            schema: SCHEMA_AMOUNT
+            schema: http://schema.big-iot.org/mobility/gpsAccuracy
         -   name: sumGPSAltitude
-            schema: http://schema.org/elevation
+            schema: http://schema.big-iot.org/mobility/gpsAltitude
         -   name: avgGPSAltitude
-            schema: http://schema.org/elevation
+            schema: http://schema.big-iot.org/mobility/gpsAltitude
         -   name: numGPSAltitude
-            schema: SCHEMA_AMOUNT
+            schema: http://schema.big-iot.org/mobility/gpsAltitude
         -   name: sumGPSBearing
-            schema: SCHEMA_GPS_BEARING 
+            schema: http://schema.big-iot.org/mobility/gpsBearing 
         -   name: avgGPSBearing
-            schema: SCHEMA_GPS_BEARING 
+            schema: http://schema.big-iot.org/mobility/gpsBearing 
         -   name: numGPSBearing
-            schema: SCHEMA_AMOUNT
+            schema: http://schema.big-iot.org/mobility/gpsBearing
         -   name: sumGPSHDOP
-            schema: SCHEMA_SUM_SUM_GPS_HDOP
+            schema: http://schema.big-iot.org/mobility/gpsHDOP
         -   name: avgGPSHDOP
-            schema: SCHEMA_AVG_GPS_HDOP
+            schema: http://schema.big-iot.org/mobility/gpsHDOP
         -   name: numGPSHDOP
-            schema: SCHEMA_AMOUNT
+            schema: http://schema.big-iot.org/mobility/gpsHDOP
         -   name: sumGPSPDOP
-            schema: SCHEMA_SUM_GPS_PDOP
+            schema: http://schema.big-iot.org/mobility/gpsPDOP
         -   name: avgGPSPDOP
-            schema: SCHEMA_AVG_GPS_PDOP
+            schema: http://schema.big-iot.org/mobility/gpsPDOP
         -   name: numGPSPDOP
-            schema: SCHEMA_AMOUNT
+            schema: http://schema.big-iot.org/mobility/gpsPDOP
         -   name: sumGPSSpeed
-            schema: http://auto.schema.org/speed
+            schema: http://schema.big-iot.org/mobility/gpsSpeed
         -   name: avgGPSSpeed
-            schema: http://auto.schema.org/speed
+            schema: http://schema.big-iot.org/mobility/gpsSpeed
         -   name: numGPSSpeed
-            schema: SCHEMA_AMOUNT
+            schema: http://schema.big-iot.org/mobility/gpsSpeed
         -   name: sumGPSVDOP
-            schema: SCHEMA_SUM_GPS_VDOP
+            schema: http://schema.big-iot.org/mobility/gpsVDOP
         -   name: avgGPSVDOP
-            schema: SCHEMA_AVG_GPS_VDOP
+            schema: http://schema.big-iot.org/mobility/gpsVDOP
         -   name: numGPSVDOP
-            schema: SCHEMA_AMOUNT
+            schema: http://schema.big-iot.org/mobility/gpsVDOP
         -   name : sumIntakePressure
-            schema: SCHEMA_SUM_INTAKE_PRESSURE
+            schema: http://schema.big-iot.org/mobility/intakeManifoldAbsolutePressure
         -   name : avgIntakePressure
-            schema: SCHEMA_AVG_INTAKE_PRESSURE
+            schema: http://schema.big-iot.org/mobility/intakeManifoldAbsolutePressure
         -   name : numIntakePressure
-            schema: SCHEMA_AMOUNT
+            schema: http://schema.big-iot.org/mobility/intakeManifoldAbsolutePressure
         -   name : sumIntakeTemperature
-            schema: SCHEMA_SUM_INTAKE_TEMPERATURE
+            schema: http://schema.big-iot.org/mobility/intakeAirTemperature
         -   name : avgIntakeTemperature
-            schema: SCHEMA_AVG_INTAKE_TEMPERATURE
+            schema: http://schema.big-iot.org/mobility/intakeAirTemperature
         -   name : numIntakeTemperature
-            schema: SCHEMA_AMOUNT
+            schema: http://schema.big-iot.org/mobility/intakeAirTemperature
         -   name : sumMAF
-            schema: SCHEMA_SUM_MAF
+            schema: http://schema.big-iot.org/mobility/massAirFlow
         -   name : avgMAF
-            schema: SCHEMA_AVG_MAF
+            schema: http://schema.big-iot.org/mobility/massAirFlow
         -   name : numMAF
-            schema: SCHEMA_AMOUNT
+            schema: http://schema.big-iot.org/mobility/massAirFlow
         -   name : sumO2LambdaVoltage
-            schema: SCHEMA_SUM_SUM_O2_LAMBDA_VOLTAGE
+            schema: http://schema.big-iot.org/mobility/o2LambdaVoltage
         -   name : avgO2LambdaVoltage
-            schema: SCHEMA_AVG_SUM_O2_LAMBDA_VOLTAGE
+            schema: http://schema.big-iot.org/mobility/o2LambdaVoltage
         -   name : numO2LambdaVoltage
-            schema: SCHEMA_AMOUNT
+            schema: http://schema.big-iot.org/mobility/o2LambdaVoltage
         -   name : sumO2LambdaVoltageER
-            schema: SCHEMA_SUM_SUM_O2_LAMBDA_VOLTAGE_ER
+            schema: http://schema.big-iot.org/mobility/o2LambdaVoltageER
         -   name : avgO2LambdaVoltageER
-            schema: SCHEMA_AVG_SUM_O2_LAMBDA_VOLTAGE_ER
+            schema: http://schema.big-iot.org/mobility/o2LambdaVoltageER
         -   name : numO2LambdaVoltageER
-            schema: SCHEMA_AMOUNT
+            schema: http://schema.big-iot.org/mobility/o2LambdaVoltageER
         -   name : sumRpm
-            schema: SCHEMA_SUM_RPM
+            schema: http://schema.big-iot.org/mobility/engineRevolutionsPerMinute
         -   name : avgRpm
-            schema: SCHEMA_AVG_RPM
+            schema: http://schema.big-iot.org/mobility/engineRevolutionsPerMinute
         -   name : numRpm
-            schema: SCHEMA_AMOUNT
+            schema: http://schema.big-iot.org/mobility/engineRevolutionsPerMinute
         -   name : sumSpeed
-            schema: http://auto.schema.org/speed
+            schema: http://schema.big-iot.org/mobility/measuredSpeed
         -   name : avgSpeed
-            schema: http://auto.schema.org/speed
+            schema: http://schema.big-iot.org/mobility/measuredSpeed
         -   name : numSpeed
-            schema: SCHEMA_AMOUNT
+            schema: http://schema.big-iot.org/mobility/measuredSpeed
         -   name : sumThrottlePosition
-            schema: SCHEMA_SUM_THROTTLE_POSITION
+            schema: http://schema.big-iot.org/mobility/throttlePosition
         -   name : avgThrottlePosition
-            schema: SCHEMA_AVG_THROTTLE_POSITION
+            schema: http://schema.big-iot.org/mobility/throttlePosition
         -   name : numThrottlePosition
-            schema: SCHEMA_AMOUNT
+            schema: http://schema.big-iot.org/mobility/throttlePosition
         -   name : sumCO2
-            schema: http://auto.schema.org/emissionsCO2
+            schema: http://schema.big-iot.org/mobility/emissionsCO2
         -   name : avgCO2
-            schema: http://auto.schema.org/emissionsCO2
+            schema: http://schema.big-iot.org/mobility/emissionsCO2
         -   name : numCO2
-            schema: SCHEMA_AMOUNT
+            schema: http://schema.big-iot.org/mobility/emissionsCO2
         -   name : sumEngineLoad
-            schema: SCHEMA_SUM_ENGINE_LOAD
+            schema: http://schema.big-iot.org/mobility/calculatedEngineLoad
         -   name : avgEngineLoad
-            schema: SCHEMA_AVG_ENGINE_LOAD
+            schema: http://schema.big-iot.org/mobility/calculatedEngineLoad
         -   name : numEngineLoad
-            schema: SCHEMA_AMOUNT
+            schema: http://schema.big-iot.org/mobility/calculatedEngineLoad
         -   name : sumConsumption
-            schema: http://schema.org/fuelConsumption
+            schema: http://schema.big-iot.org/mobility/fuelConsumption
         -   name : avgConsumption
-            schema: http://schema.org/fuelConsumption
+            schema: http://schema.big-iot.org/mobility/fuelConsumption
         -   name : numConsumption
-            schema: SCHEMA_AMOUNT
+            schema: http://schema.big-iot.org/mobility/fuelConsumption
