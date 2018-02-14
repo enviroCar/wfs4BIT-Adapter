@@ -49,7 +49,7 @@ offering:
     featureIdentifier:
         name: featureID
         schema: http://schema.org/identifier
-    mapNullValues: true
+    mapNullValues: false
     outputData:
         -   name : NAME_STRAS
             schema: proposed:streetname
