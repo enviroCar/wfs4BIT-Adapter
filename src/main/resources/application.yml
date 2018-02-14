@@ -19,6 +19,7 @@ wfs:
     request: GetFeature
     typeName: app:parkandride_os
     outputFormat: text/xml; subtype=gml/2.1.2
+#    srsName: epsg:4326
     
 offering:
     local_id: hamburg_bahnstation_parking_offering
@@ -34,6 +35,7 @@ offering:
         y2: 10.356262
     inCity: Hamburg
     inCountry: Germany
+    route: highways
     expireDate: 2018-02-28T01:23:45
     accessStreamTimeout: 2018-02-28T01:23:45
     licenseType: NON_COMMERCIAL_DATA_LICENSE
@@ -47,7 +49,7 @@ offering:
     featureIdentifier:
         name: featureID
         schema: proposed:id
-    mapNullValues: true
+    mapNullValues: false
     outputData:
         -   name : bahnstation
             schema: proposed:bahnstation
