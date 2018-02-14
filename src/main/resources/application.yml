@@ -44,11 +44,11 @@ offering:
         currency: Euros
     geometry:
         name: geom
-        schema: poposed:line
+        schema: proposed:line
     featureIdentifier:
         name: featureID
         schema: proposed:id
-    mapNullValues: true
+    mapNullValues: false
     outputData:
         -   name: OSMID
             schema: proposed:id
