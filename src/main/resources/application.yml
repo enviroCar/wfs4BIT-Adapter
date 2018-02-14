@@ -21,8 +21,8 @@ wfs:
     outputFormat: text/xml; subtype=gml/2.1.2
     
 offering:
-    local_id: roadsegments-offering
-    name:   WFS-OFFERING-ROADSEGMENTS
+    local_id: roadsegments-offer
+#    name:   WFS-OFFERING-ROADSEGMENTS
     category: urn:proposed:roadsegments
     timePeriod:
         startDate: 2013-01-01T01:23:45
