@@ -49,7 +49,7 @@ offering:
     featureIdentifier:
         name: featureID
         schema: proposed:id
-    mapNullValues: true
+    mapNullValues: false
     outputData:
         -   name : zaehlstelle
             schema: proposed:zaehlstelle
