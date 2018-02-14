@@ -81,6 +81,8 @@ public class WFSProducer extends OfferingProducer {
                     .addInputData(CUSTOM_WFS_FILTER, new RDFType(SCHEMA_CUSTOM_WFS_FILTER), ValueType.TEXT)
                     .addInputData(SORT_BY_FILTER, new RDFType(SCHEMA_SORT_BY_FILTER), ValueType.TEXT)
                     .addInputData(BOUNDING_BOX_FILTER, new RDFType(SCHEMA_BOUNDING_BOX_FILTER), ValueType.TEXT)
+                    .addInputData(FEATURE_ID_FILTER, new RDFType(SCHEMA_FEATURE_ID_FILTER), ValueType.TEXT)
+                    .addInputData(PROPERTY_NAME_FILTER, new RDFType(SCHEMA_PROPERTY_NAME_FILTER), ValueType.TEXT)
                     .withProtocol(BigIotTypes.EndpointType.HTTP_GET)
                     .withAccessRequestHandler(getRequestHandler());
 

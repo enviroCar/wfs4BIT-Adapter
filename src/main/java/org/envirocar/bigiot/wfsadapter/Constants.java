@@ -26,19 +26,19 @@ package org.envirocar.bigiot.wfsadapter;
 interface Constants {
     
     // CustomWFSFilter
-    static final String SCHEMA_CUSTOM_WFS_FILTER = "SCHEMA_CUSTOM_FILTER";
+    static final String SCHEMA_CUSTOM_WFS_FILTER = "proposed:WFSFilter";
     static final String CUSTOM_WFS_FILTER = "Filter";
     
     // MaxFeaturesFilter
-    static final String SCHEMA_MAX_FEATURES_FILTER = "SCHEMA_MAX_FEATURES_FILTER";
+    static final String SCHEMA_MAX_FEATURES_FILTER = "proposed:maxFeaturesFilter";
     static final String MAX_FEATURES_FILTER = "maxFeatures";
     
     // SortByFilter
-    static final String SCHEMA_SORT_BY_FILTER = "SCHEMA_SORT_BY_FILTER";
+    static final String SCHEMA_SORT_BY_FILTER = "proposed:sortByFilter";
     static final String SORT_BY_FILTER = "sortBy";
     
     // BoundingBoxFilter
-    static final String SCHEMA_BOUNDING_BOX_FILTER = "SCHEMA_BOUNDING_BOX_FILTER";
+    static final String SCHEMA_BOUNDING_BOX_FILTER = "http://schema.org/box";
     static final String BOUNDING_BOX_FILTER = "bbox";
     
     // FeatureIDFilter
@@ -46,7 +46,7 @@ interface Constants {
     static final String FEATURE_ID_FILTER = "featureID";
     
     // FeatureIDFilter
-    static final String SCHEMA_PROPERTY_NAME_FILTER = "SCHEMA_PROPERTY_FILTER";
+    static final String SCHEMA_PROPERTY_NAME_FILTER = "proposed:propertyNameFilter";
     static final String PROPERTY_NAME_FILTER = "propertyName";
     
     
