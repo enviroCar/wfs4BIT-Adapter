@@ -5,7 +5,7 @@ services:
         ports:
             - 7776:7776
         volumes:
-            - ./configs/bahn-config.yml:/config/application.yml
+            - ./configs/wfsconfig-vienna-busstops.yml:/config/application.yml
         environment:
             - BIOT_PROVIDER_ID=__PROVIDER__
             - BIOT_PROVIDER_SECRET=__SECRET__
@@ -14,7 +14,7 @@ services:
         ports:
             - 7777:7776
         volumes:
-            - ./configs/ec-streetsegments-config.yml:/config/application.yml
+            - ./configs/wfsconfig-ec-streetsegments.yml:/config/application.yml
         environment:
             - BIOT_PROVIDER_ID=__PROVIDER__
             - BIOT_PROVIDER_SECRET=__SECRET__
@@ -23,7 +23,7 @@ services:
         ports:
             - 7778:7776
         volumes:
-            - ./configs/atmospheric-load-config.yml:/config/application.yml
+            - ./configs/wfsconfig-atmospheric-load.yml:/config/application.yml
         environment:
             - BIOT_PROVIDER_ID=__PROVIDER__
             - BIOT_PROVIDER_SECRET=__SECRET__
@@ -32,7 +32,7 @@ services:
         ports:
             - 7779:7776
         volumes:
-            - ./configs/highway-traffic-config.yml:/config/application.yml
+            - ./configs/wfsconfig-highway-traffic.yml:/config/application.yml
         environment:
             - BIOT_PROVIDER_ID=__PROVIDER__
             - BIOT_PROVIDER_SECRET=__SECRET__
