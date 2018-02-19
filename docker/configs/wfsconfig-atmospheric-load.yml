@@ -9,8 +9,8 @@ bigiot:
     marketplace:
         url:  https://market.big-iot.org
     provider:
-        address: processing.envirocar.org
-        port: 7776
+        address: localhost
+        port: 7774
         
 wfs:
     url: http://fbinter.stadt-berlin.de/fb/wfs/geometry/senstadt/re_03_11_2luftbelastverkehr2015
@@ -19,15 +19,25 @@ wfs:
     request: GetFeature
     typeName: fis:re_03_11_2luftbelastverkehr2015
     outputFormat: text/xml; subtype=gml/2.1.2
+#    srsName: 4326
     
 offering:
-    local_id: atmospheric-load-offering
-    withInformation:
-        name:   WFS-ATMOSPHERIC-LOAD-OFFERING
-        schema: SCHEMA_ATMOSPHERIC_LOAD_VIENNA
+    local_id: atmospheric_load_offering
+    name:   WFS-atmosphericLoad-Berlin
+    category: urn:proposed:Atmospheric_Load
+    timePeriod:
+        startDate: 2015-01-01T00:00:00
+        endDate: 2020-12-30T22:55:55
+    inRegion:
+        x1: 52.358313
+        y1: 13.070396
+        x2: 52.676703
+        y2: 13.788627
+    inCity: Berlin
+    inCountry: Germany
     route: atmosphericload
     expireDate: 2018-02-28T01:23:45
-    accessStreamTimeout: 2018-02-28T01:23:45
+#    accessStreamTimeout: 2018-02-28T01:23:45
     licenseType: NON_COMMERCIAL_DATA_LICENSE
     price:
         pricingModel: FREE
@@ -42,36 +52,36 @@ offering:
     mapNullValues: true
     outputData:
         -   name : NAME_STRAS
-            schema: SCHEMA_STREETNAME
+            schema: proposed:streetname
         -   name : LAENGE_ABS
-            schema: SCHEMA_LENGTH
+            schema: proposed:streetlength
         -   name : DTV
-            schema: SCHEMA_DTV
+            schema: proposed:DTV
         -   name : SLKW_ABS
-            schema: SCHEMA_AMOUNT
+            schema: proposed:SLKW_ABS
         -   name : LLKW_ABS
-            schema: SCHEMA_AMOUNT
+            schema: proposed:LLKW_ABS
         -   name : BUS_ABS
-            schema: SCHEMA_AMOUNT
+            schema: proposed:BUS_ABS
         -   name : KRAD_ABS
-            schema: SCHEMA_AMOUNT
+            schema: proposed:KRAD_ABS
         -   name : N_BETROF
-            schema: SCHEMA_AMOUNT
+            schema: proposed:N_BETROF
         -   name : GNO2_2015
-            schema: SCHEMA_AMOUNT
-        -   name : GPM25_2015
-            schema: SCHEMA_AMOUNT
+            schema: proposed:GN02_2015
         -   name : GPM10_2015
-            schema: SCHEMA_AMOUNT
+            schema: proposed:GPM10_2015
+        -   name : GPM25_2015
+            schema: proposed:GPM25_2015
         -   name : GNO2_2020
-            schema: SCHEMA_AMOUNT
+            schema: proposed:GN02_2020
         -   name : GPM10_2020
-            schema: SCHEMA_AMOUNT
+            schema: proposed:GN10_2020
         -   name : GPM25_2020
-            schema: SCHEMA_AMOUNT
+            schema: proposed:GN25_2020
         -   name : INDEX_NO2
-            schema: SCHEMA_AMOUNT
+            schema: proposed:INDEX_NO2
         -   name : INDEX_PM10
-            schema: SCHEMA_AMOUNT
+            schema: proposed:INDEX_PM10
         -   name : GESAMTINDEX
-            schema: SCHEMA_AMOUNT
+            schema: proposed:INDEX_Total
