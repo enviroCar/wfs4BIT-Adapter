@@ -7,6 +7,32 @@ services:
         volumes:
             - ./configs/bahn-config.yml:/config/application.yml
         environment:
-            - BIOT_PROVIDER_ID=()
-            - BIOT_PROVIDER_SECRET=()
-    
+            - BIOT_PROVIDER_ID=__PROVIDER__
+            - BIOT_PROVIDER_SECRET=__SECRET__
+    ec-streetsegments-wfs:
+        image: envirocar/wfs4bit
+        ports:
+            - 7777:7776
+        volumes:
+            - ./configs/ec-streetsegments-config.yml:/config/application.yml
+        environment:
+            - BIOT_PROVIDER_ID=__PROVIDER__
+            - BIOT_PROVIDER_SECRET=__SECRET__
+    atmospheric-load-wfs:
+        image: envirocar/wfs4bit
+        ports:
+            - 7778:7776
+        volumes:
+            - ./configs/atmospheric-load-config.yml:/config/application.yml
+        environment:
+            - BIOT_PROVIDER_ID=__PROVIDER__
+            - BIOT_PROVIDER_SECRET=__SECRET__
+    highway-traffic-wfs:
+        image: envirocar/wfs4bit
+        ports:
+            - 7779:7776
+        volumes:
+            - ./configs/highway-traffic-config.yml:/config/application.yml
+        environment:
+            - BIOT_PROVIDER_ID=__PROVIDER__
+            - BIOT_PROVIDER_SECRET=__SECRET__
