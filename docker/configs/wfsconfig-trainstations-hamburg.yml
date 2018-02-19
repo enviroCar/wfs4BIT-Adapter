@@ -1,0 +1,71 @@
+spring:
+    application:
+        name: enviroCar - BIGIOT WFS Adapter
+
+ec4bit:
+    contact: envirocar@52north.org
+    
+bigiot:
+    marketplace:
+        url:  https://market.big-iot.org
+    provider:
+        address: localhost
+        port: 7775
+        
+wfs:
+    url: http://geodienste.hamburg.de/HH_WFS_Verkehr_opendata
+    service: WFS
+    version: 1.1.0
+    request: GetFeature
+    typeName: app:parkandride_os
+    outputFormat: text/xml; subtype=gml/2.1.2
+#    srsName: epsg:4326
+    
+offering:
+    local_id: hamburg_bahnstation_parking_offering
+    name:   WFS-trainstation-parking-lots
+    category: urn:proposed:bahnstation
+    timePeriod:
+        startDate: 2018-01-01T01:23:45
+        endDate: 2018-02-28T01:23:45
+    inRegion:
+        x1: 53.395600
+        y1: 9.653137
+        x2: 53.762501
+        y2: 10.356262
+    inCity: Hamburg
+    inCountry: Germany
+    route: highways
+    expireDate: 2018-02-28T01:23:45
+    accessStreamTimeout: 2018-02-28T01:23:45
+    licenseType: NON_COMMERCIAL_DATA_LICENSE
+    price:
+        pricingModel: FREE
+        price: 0.00
+        currency: Euros
+    geometry:
+        name: position
+        schema: proposed:Point
+    featureIdentifier:
+        name: featureID
+        schema: proposed:id
+    mapNullValues: false
+    outputData:
+        -   name : bahnstation
+            schema: proposed:bahnstation
+        -   name : art
+            schema: proposed:type
+        -   name : einfahrt
+            schema: proposed:entrance
+        -   name : allgemeinest_gesamt
+            schema: proposed:total_general_parking_slots
+        -   name : entgeltpflichtig
+            schema: proposed:against_payment
+        -   name : preise
+            schema: proposed:price
+        -   name : stellplaetze_gesamt
+            schema: proposed:total_parking_slots
+        -   name : pur
+            schema: proposed:pure
+        -   name : datenherkunft
+            schema: proposed:data_origin
