@@ -1,0 +1,77 @@
+spring:
+    application:
+        name: enviroCar - BIGIOT WFS Adapter
+
+ec4bit:
+    contact: envirocar@52north.org
+    
+bigiot:
+    marketplace:
+        url:  https://market.big-iot.org
+    provider:
+        address: processing.envirocar.org
+        port: 7776
+        
+wfs:
+    url: http://fbinter.stadt-berlin.de/fb/wfs/geometry/senstadt/re_03_11_2luftbelastverkehr2015
+    service: WFS
+    version: 1.1.0
+    request: GetFeature
+    typeName: fis:re_03_11_2luftbelastverkehr2015
+    outputFormat: text/xml; subtype=gml/2.1.2
+    
+offering:
+    local_id: atmospheric-load-offering
+    withInformation:
+        name:   WFS-ATMOSPHERIC-LOAD-OFFERING
+        schema: SCHEMA_ATMOSPHERIC_LOAD_VIENNA
+    route: atmosphericload
+    expireDate: 2018-02-28T01:23:45
+    accessStreamTimeout: 2018-02-28T01:23:45
+    licenseType: NON_COMMERCIAL_DATA_LICENSE
+    price:
+        pricingModel: FREE
+        price: 0.00
+        currency: Euros
+    geometry:
+        name: spatial_geometry
+        schema: http://schema.org/line
+    featureIdentifier:
+        name: featureID
+        schema: http://schema.org/identifier
+    mapNullValues: true
+    outputData:
+        -   name : NAME_STRAS
+            schema: SCHEMA_STREETNAME
+        -   name : LAENGE_ABS
+            schema: SCHEMA_LENGTH
+        -   name : DTV
+            schema: SCHEMA_DTV
+        -   name : SLKW_ABS
+            schema: SCHEMA_AMOUNT
+        -   name : LLKW_ABS
+            schema: SCHEMA_AMOUNT
+        -   name : BUS_ABS
+            schema: SCHEMA_AMOUNT
+        -   name : KRAD_ABS
+            schema: SCHEMA_AMOUNT
+        -   name : N_BETROF
+            schema: SCHEMA_AMOUNT
+        -   name : GNO2_2015
+            schema: SCHEMA_AMOUNT
+        -   name : GPM25_2015
+            schema: SCHEMA_AMOUNT
+        -   name : GPM10_2015
+            schema: SCHEMA_AMOUNT
+        -   name : GNO2_2020
+            schema: SCHEMA_AMOUNT
+        -   name : GPM10_2020
+            schema: SCHEMA_AMOUNT
+        -   name : GPM25_2020
+            schema: SCHEMA_AMOUNT
+        -   name : INDEX_NO2
+            schema: SCHEMA_AMOUNT
+        -   name : INDEX_PM10
+            schema: SCHEMA_AMOUNT
+        -   name : GESAMTINDEX
+            schema: SCHEMA_AMOUNT
