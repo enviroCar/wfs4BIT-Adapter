@@ -36,3 +36,12 @@ services:
         environment:
             - BIOT_PROVIDER_ID=__PROVIDER__
             - BIOT_PROVIDER_SECRET=__SECRET__
+    trainstations-hamburg-wfs:
+        image: envirocar/wfs4bit
+        ports:
+            - 7780:7776
+        volumes:
+            - ./configs/wfsconfig-trainstations-hamburg.yml:/config/application.yml
+        environment:
+            - BIOT_PROVIDER_ID=__PROVIDER__
+            - BIOT_PROVIDER_SECRET=__SECRET__
