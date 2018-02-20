@@ -9,8 +9,8 @@ bigiot:
     marketplace:
         url:  https://market.big-iot.org
     provider:
-        address: localhost
-        port: 7775
+        address: processing.envirocar.org
+        port: 7776
         
 wfs:
     url: http://geodienste.hamburg.de/HH_WFS_Verkehr_opendata
