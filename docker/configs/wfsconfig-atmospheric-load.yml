@@ -10,7 +10,7 @@ bigiot:
         url:  https://market.big-iot.org
     provider:
         address: processing.envirocar.org
-        port: 7776
+        port: 7778
         
 wfs:
     url: http://fbinter.stadt-berlin.de/fb/wfs/geometry/senstadt/re_03_11_2luftbelastverkehr2015

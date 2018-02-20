@@ -10,7 +10,7 @@ bigiot:
         url:  https://market.big-iot.org
     provider:
         address: processing.envirocar.org
-        port: 7776
+        port: 7779
         
 wfs:
     url: https://geodienste.hamburg.de/HH_WFS_Verkehrsstaerken

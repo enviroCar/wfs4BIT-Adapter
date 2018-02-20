@@ -10,7 +10,7 @@ bigiot:
         url:  https://market.big-iot.org
     provider:
         address: processing.envirocar.org
-        port: 7776
+        port: 7777
         
 wfs:
     url: http://processing.envirocar.org:9090/geoserver/cite/ows

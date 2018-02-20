@@ -12,7 +12,7 @@ services:
     ec-streetsegments-wfs:
         image: envirocar/wfs4bit
         ports:
-            - 7777:7776
+            - 7777:7777
         volumes:
             - ./configs/wfsconfig-ec-streetsegments.yml:/config/application.yml
         environment:
@@ -21,7 +21,7 @@ services:
     atmospheric-load-wfs:
         image: envirocar/wfs4bit
         ports:
-            - 7778:7776
+            - 7778:7778
         volumes:
             - ./configs/wfsconfig-atmospheric-load.yml:/config/application.yml
         environment:
@@ -30,7 +30,7 @@ services:
     highway-traffic-wfs:
         image: envirocar/wfs4bit
         ports:
-            - 7779:7776
+            - 7779:7779
         volumes:
             - ./configs/wfsconfig-highway-traffic.yml:/config/application.yml
         environment:
@@ -39,7 +39,7 @@ services:
     trainstations-hamburg-wfs:
         image: envirocar/wfs4bit
         ports:
-            - 7780:7776
+            - 7780:7780
         volumes:
             - ./configs/wfsconfig-trainstations-hamburg.yml:/config/application.yml
         environment:
