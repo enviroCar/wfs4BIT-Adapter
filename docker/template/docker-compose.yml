@@ -1,0 +1,47 @@
+version: '3'
+services:
+    bahn-wfs:
+        image: envirocar/wfs4bit
+        ports:
+            - 7776:7776
+        volumes:
+            - ./configs/wfsconfig-vienna-busstops.yml:/config/application.yml
+        environment:
+            - BIOT_PROVIDER_ID=__PROVIDER__
+            - BIOT_PROVIDER_SECRET=__SECRET__
+    ec-streetsegments-wfs:
+        image: envirocar/wfs4bit
+        ports:
+            - 7777:7777
+        volumes:
+            - ./configs/wfsconfig-ec-streetsegments.yml:/config/application.yml
+        environment:
+            - BIOT_PROVIDER_ID=__PROVIDER__
+            - BIOT_PROVIDER_SECRET=__SECRET__
+    atmospheric-load-wfs:
+        image: envirocar/wfs4bit
+        ports:
+            - 7778:7778
+        volumes:
+            - ./configs/wfsconfig-atmospheric-load.yml:/config/application.yml
+        environment:
+            - BIOT_PROVIDER_ID=__PROVIDER__
+            - BIOT_PROVIDER_SECRET=__SECRET__
+    highway-traffic-wfs:
+        image: envirocar/wfs4bit
+        ports:
+            - 7779:7779
+        volumes:
+            - ./configs/wfsconfig-highway-traffic.yml:/config/application.yml
+        environment:
+            - BIOT_PROVIDER_ID=__PROVIDER__
+            - BIOT_PROVIDER_SECRET=__SECRET__
+    trainstations-hamburg-wfs:
+        image: envirocar/wfs4bit
+        ports:
+            - 7780:7780
+        volumes:
+            - ./configs/wfsconfig-trainstations-hamburg.yml:/config/application.yml
+        environment:
+            - BIOT_PROVIDER_ID=__PROVIDER__
+            - BIOT_PROVIDER_SECRET=__SECRET__

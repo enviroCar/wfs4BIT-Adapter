@@ -35,8 +35,11 @@ import org.envirocar.bigiot.wfsadapter.config.Config.OfferingConfigurations.Offe
 
 import java.util.List;
 import org.eclipse.bigiot.lib.model.BigIotTypes;
+import org.eclipse.bigiot.lib.model.BoundingBox;
+import org.eclipse.bigiot.lib.model.Location;
 import org.eclipse.bigiot.lib.model.Price;
 import org.eclipse.bigiot.lib.offering.RegistrableOfferingDescriptionChain;
+import org.envirocar.bigiot.wfsadapter.config.Config.OfferingConfigurations.InRegion;
 import org.envirocar.bigiot.wfsadapter.exception.OfferingConfigParamMissingException;
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
@@ -67,16 +70,19 @@ public class WFSProducer extends OfferingProducer {
         // add required offering parameters as specified in application.yml:
         try {
             String local_id = wfsConfig.getOffering().getLocal_id();
-            String informationName = wfsConfig.getOffering().getWithInformation().getName();
-            String informationSchema = wfsConfig.getOffering().getWithInformation().getSchema();
+            String name = wfsConfig.getOffering().getName();
+            String category = wfsConfig.getOffering().getCategory();
 
             // register offeringDescription:
             odc = provider.createOfferingDescription(local_id)
+                    .withName(name)
+                    .withCategory(category)
                     .addInputData(MAX_FEATURES_FILTER, new RDFType(SCHEMA_MAX_FEATURES_FILTER), ValueType.TEXT)
                     .addInputData(CUSTOM_WFS_FILTER, new RDFType(SCHEMA_CUSTOM_WFS_FILTER), ValueType.TEXT)
                     .addInputData(SORT_BY_FILTER, new RDFType(SCHEMA_SORT_BY_FILTER), ValueType.TEXT)
                     .addInputData(BOUNDING_BOX_FILTER, new RDFType(SCHEMA_BOUNDING_BOX_FILTER), ValueType.TEXT)
-                    .withInformation(new Information(informationName, new RDFType(informationSchema)))
+                    .addInputData(FEATURE_ID_FILTER, new RDFType(SCHEMA_FEATURE_ID_FILTER), ValueType.TEXT)
+                    .addInputData(PROPERTY_NAME_FILTER, new RDFType(SCHEMA_PROPERTY_NAME_FILTER), ValueType.TEXT)
                     .withProtocol(BigIotTypes.EndpointType.HTTP_GET)
                     .withAccessRequestHandler(getRequestHandler());
 
@@ -88,6 +94,10 @@ public class WFSProducer extends OfferingProducer {
             if (wfsConfig.getOffering().getInCity() != null
                     && !wfsConfig.getOffering().getInCity().isEmpty()) {
                 odc.inCity(wfsConfig.getOffering().getInCity());
+            }
+            if (wfsConfig.getOffering().getInCountry()!= null
+                    && !wfsConfig.getOffering().getInCountry().isEmpty()) {
+                odc.inRegion(wfsConfig.getOffering().getInCountry());
             }
             if (wfsConfig.getOffering().getExpireDate() != null
                     && !wfsConfig.getOffering().getExpireDate().isEmpty()) {
@@ -108,6 +118,18 @@ public class WFSProducer extends OfferingProducer {
                 if (millis > 1000) {
                     odc.withAccessStreamSessionTimeout(millis);
                 }
+            }
+            if (wfsConfig.getOffering().getTimePeriod() != null) {
+                DateTimeFormatter TEMPORAL_TIME_PATTERN = DateTimeFormat.forPattern("yyyy-MM-dd'T'HH:mm:ss");
+                DateTime startDate = TEMPORAL_TIME_PATTERN.parseDateTime(wfsConfig.getOffering().getTimePeriod().getStartDate());
+                DateTime endDate = TEMPORAL_TIME_PATTERN.parseDateTime(wfsConfig.getOffering().getTimePeriod().getEndDate());
+                odc.withTimePeriod(startDate, endDate);
+            }
+            if (wfsConfig.getOffering().getInRegion() != null) {
+                InRegion ir = wfsConfig.getOffering().getInRegion();
+                odc.inRegion(BoundingBox.create(
+                        Location.create(ir.getX1(), ir.getY1()), Location.create(ir.getX2(), ir.getY2())
+                ));
             }
             if (wfsConfig.getOffering().getLicenseType() != null
                     && !wfsConfig.getOffering().getLicenseType().isEmpty()) {

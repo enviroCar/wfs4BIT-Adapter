@@ -1,0 +1,139 @@
+spring:
+    application:
+        name: enviroCar - BIGIOT WFS Adapter
+
+ec4bit:
+    contact: envirocar@52north.org
+    
+bigiot:
+    marketplace:
+        url:  https://market.big-iot.org
+    provider:
+        address: processing.envirocar.org
+        port: 7779
+        
+wfs:
+    url: https://geodienste.hamburg.de/HH_WFS_Verkehrsstaerken
+    service: WFS
+    version: 1.1.0
+    request: GetFeature
+    typeName: app:verkehrsstaerken
+    outputFormat: text/xml; subtype=gml/2.1.2
+    srsName: EPSG:4326
+    
+offering:
+    local_id: hamburg_traffic_volume_offering
+    name:   WFS-Traffic-Volume-Hamburg
+    category: urn:proposed:Traffic_Volume
+    timePeriod:
+        startDate: 2007-01-01T00:00:00
+        endDate: 2016-12-30T22:55:55
+    inRegion:
+        x1: 53.395600
+        y1: 9.653137
+        x2: 53.762501
+        y2: 10.356262
+    inCity: Hamburg
+    inCountry: Germany
+    route: traffic
+    expireDate: 2018-02-28T01:23:45
+#    accessStreamTimeout: 2018-02-28T01:23:45
+    licenseType: NON_COMMERCIAL_DATA_LICENSE
+    price:
+        pricingModel: FREE
+        price: 0.00
+        currency: Euros
+    geometry:
+        name: geom
+        schema: http://schema.org/point
+    featureIdentifier:
+        name: featureID
+        schema: proposed:id
+    mapNullValues: false
+    outputData:
+        -   name : zaehlstelle
+            schema: proposed:zaehlstelle
+        -   name : bezeichnung
+            schema: proposed:description
+        -   name : art
+            schema: proposed:type
+        -   name : dtv_2007
+            schema: proposed:DTV
+        -   name : dtvw_2007
+            schema: proposed:DTVW
+        -   name : sv_am_drvw_2007
+            schema: proposed:SV_AM_DRVW
+        -   name : baustelleneinfluss_2007
+            schema: proposed:construction_site_influence
+        -   name : dtv_2008
+            schema: proposed:DTV
+        -   name : dtvw_2008
+            schema: proposed:DTVW
+        -   name : sv_am_drvw_2008
+            schema: proposed:SV_AM_DRVW
+        -   name : baustelleneinfluss_2008
+            schema: proposed:construction_site_influence
+        -   name : dtv_2009
+            schema: proposed:DTV
+        -   name : dtvw_2009
+            schema: proposed:DTVW
+        -   name : sv_am_drvw_2009
+            schema: proposed:SV_AM_DRVW
+        -   name : baustelleneinfluss_2009
+            schema: proposed:construction_site_influence
+        -   name : dtv_2010
+            schema: proposed:DTV
+        -   name : dtvw_2010
+            schema: proposed:DTVW
+        -   name : sv_am_drvw_2010
+            schema: proposed:SV_AM_DRVW
+        -   name : baustelleneinfluss_2010
+            schema: proposed:construction_site_influence
+        -   name : dtv_2011
+            schema: proposed:DTV
+        -   name : dtvw_2011
+            schema: proposed:DTVW
+        -   name : sv_am_drvw_2011
+            schema: proposed:SV_AM_DRVW
+        -   name : baustelleneinfluss_2011
+            schema: proposed:construction_site_influence
+        -   name : dtv_2012
+            schema: proposed:DTV
+        -   name : dtvw_2012
+            schema: proposed:DTVW
+        -   name : sv_am_drvw_2012
+            schema: proposed:SV_AM_DRVW
+        -   name : baustelleneinfluss_2012
+            schema: proposed:construction_site_influence
+        -   name : dtv_2013
+            schema: proposed:DTV
+        -   name : dtvw_2013
+            schema: proposed:DTVW
+        -   name : sv_am_drvw_2013
+            schema: proposed:SV_AM_DRVW
+        -   name : baustelleneinfluss_2013
+            schema: proposed:construction_site_influence
+        -   name : dtv_2014
+            schema: proposed:DTV
+        -   name : dtvw_2014
+            schema: proposed:DTVW
+        -   name : sv_am_drvw_2014
+            schema: proposed:SV_AM_DRVW
+        -   name : baustelleneinfluss_2014
+            schema: proposed:construction_site_influence
+        -   name : dtv_2015
+            schema: proposed:DTV
+        -   name : dtvw_2015
+            schema: proposed:DTVW
+        -   name : sv_am_drvw_2015
+            schema: proposed:SV_AM_DRVW
+        -   name : baustelleneinfluss_2015
+            schema: proposed:construction_site_influence
+        -   name : dtv_2016
+            schema: proposed:DTV
+        -   name : dtvw_2016
+            schema: proposed:DTVW
+        -   name : sv_am_drvw_2016
+            schema: proposed:SV_AM_DRVW
+        -   name : baustelleneinfluss_2016
+            schema: proposed:construction_site_influence

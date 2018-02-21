@@ -34,12 +34,9 @@ public class WFSFeatureCollectionEncoder extends BaseJSONEncoder<WFSFeatureColle
 
     @Override
     public void serialize(WFSFeatureCollection wfsfc, JsonGenerator gen, SerializerProvider serializers) throws IOException, JsonProcessingException {
-
-        gen.writeStartObject();
         
-        writeArrayOfObjects(gen, "features", wfsfc.getFeatures());
-
-        gen.writeEndObject();
+        writeArrayOfObjects(gen, wfsfc.getFeatures());
+        
     }
 
 }

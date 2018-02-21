@@ -9,7 +9,7 @@ bigiot:
     marketplace:
         url:  https://market.big-iot.org
     provider:
-        address: localhost
+        address: processing.envirocar.org
         port: 7776
         
 wfs:
@@ -22,13 +22,22 @@ wfs:
     srsName: EPSG:4326
     
 offering:
-    local_id: vienna-busstops-offering
-    withInformation:
-        name:   (Testing) / WFS-VIENNA-BUSSTOPS-OFFERING
-        schema: SCHEMA_BUS_STOPS_VIENNA
+    local_id: vienna_busstops_offering
+    name:   Vienna_Busstops
+    category: urn:proposed:Busstops
+    timePeriod:
+        startDate: 2007-01-01T00:00:00
+        endDate: 2016-12-30T22:55:55
+    inRegion:
+        x1: 48.118937
+        y1: 16.175432
+        x2: 48.317039
+        y2: 16.594972
+    inCity: Vienna
+    inCountry: Austria
     route: busstops
     expireDate: 2018-02-28T01:23:45
-    accessStreamTimeout: 2018-02-28T01:23:45
+#    accessStreamTimeout: 2018-02-28T01:23:45
     licenseType: NON_COMMERCIAL_DATA_LICENSE
     price:
         pricingModel: FREE
@@ -39,16 +48,16 @@ offering:
         schema: http://schema.org/point
     featureIdentifier:
         name: featureID
-        schema: http://schema.org/identifier
-    mapNullValues: true
+        schema: proposed:id
+    mapNullValues: false
     outputData:
         -   name : OBJECTID
-            schema: SCHEMA_AMOUNT
+            schema: proposed:id
         -   name : HTXT
-            schema: SCHEMA_AMOUNT
+            schema: proposed:location_name
         -   name : HTXTK
-            schema: SCHEMA_AMOUNT
+            schema: proposed:location_name
         -   name : HLINIEN
-            schema: SCHEMA_AMOUNT
+            schema: proposed:bus_line_number
         -   name : DIVA_ID
-            schema: SCHEMA_AMOUNT
+            schema: proposed:id

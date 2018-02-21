@@ -26,3 +26,7 @@ hs_err_pid*
 
 # target directory
 /target/*
+
+/docker/secret.sh
+/docker/Dockerfile
+/docker/docker-compose.yml
